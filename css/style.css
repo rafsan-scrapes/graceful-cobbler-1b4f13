@@ -1,0 +1,361 @@
+/* =========================================================
+   Brokoby — brand tokens
+   Ivory  #FFFFF0  — base background, "paper" of the page
+   Ink    #191919  — text, borders, the dark seal sections
+   Yolk   #F6C324  — accent, CTA, stamp fill
+   Paper  #FFFFFF  — card surface on ivory
+   Yolk-soft #FCEFC2 — tint used for alternating sections
+   ========================================================= */
+
+:root {
+  --ivory: #FFFFF0;
+  --ink: #191919;
+  --yolk: #F6C324;
+  --paper: #FFFFFF;
+  --yolk-soft: #FCEFC2;
+  --ink-soft: rgba(25, 25, 25, 0.62);
+  --ink-faint: rgba(25, 25, 25, 0.12);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html, body {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+body {
+  background-image:
+    radial-gradient(var(--ink-faint) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -10px -10px;
+}
+
+::selection {
+  background: var(--yolk);
+  color: var(--ink);
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  z-index: 100;
+  background: var(--yolk);
+  color: var(--ink);
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 3px solid var(--ink);
+  font-weight: 800;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+}
+
+/* =========================================================
+   Hard-shadow "sticker" system
+   ========================================================= */
+
+.pop-border {
+  border: 3px solid var(--ink);
+}
+
+.pop-shadow {
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.card-pop {
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-pop:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+
+.btn-pop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  white-space: nowrap;
+}
+.btn-pop:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+.btn-pop:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn-primary {
+  background: var(--yolk);
+  color: var(--ink);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+/* Torn / perforated top edge */
+.stub-edge {
+  position: relative;
+}
+.stub-edge::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 12px;
+  right: 12px;
+  height: 3px;
+  background-image: radial-gradient(circle, var(--ivory) 2.5px, transparent 2.6px);
+  background-size: 14px 3px;
+  background-repeat: repeat-x;
+}
+
+/* Pill tag — always light-fill with ink text */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+/* =========================================================
+   Seal / stamp mark
+   ========================================================= */
+
+.seal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 3px solid var(--ink);
+  background: var(--yolk);
+}
+.seal::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 999px;
+  border: 2px dashed var(--ink);
+}
+.seal-text {
+  color: var(--ink);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.15;
+}
+
+/* =========================================================
+   Marquee ticker
+   ========================================================= */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* =========================================================
+   Reveal-on-scroll
+   ========================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   Process timeline (Agora-inspired vertical connector)
+   ========================================================= */
+
+.process-step {
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.process-step::before {
+  content: '';
+  position: absolute;
+  left: 1.375rem; /* centre of the number bubble */
+  top: 3.2rem;   /* just below the bubble */
+  bottom: -1.5rem;
+  width: 3px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--ink) 0 6px,
+    transparent 6px 14px
+  );
+}
+
+.process-step:last-child::before {
+  display: none;
+}
+
+.process-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: var(--yolk);
+  border: 3px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.875rem;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   Stat bar (proof section)
+   ========================================================= */
+
+.stat-card {
+  background: var(--yolk);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* =========================================================
+   Dual-audience toggle cards
+   ========================================================= */
+
+.audience-card {
+  flex: 1;
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.audience-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+/* =========================================================
+   FAQ accordion
+   ========================================================= */
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-icon {
+  transition: transform 0.2s ease;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* =========================================================
+   Cal.com embed frame
+   ========================================================= */
+
+#my-cal-inline-30min {
+  min-height: 640px;
+}
+
+@media (max-width: 640px) {
+  #my-cal-inline-30min {
+    min-height: 720px;
+  }
+}
+
+/* =========================================================
+   Extra-small screen hardening (phones ≤ 399px)
+   ========================================================= */
+
+@media (max-width: 399px) {
+  /* Let buttons shrink on their own line instead of
+     forcing an overflow with white-space: nowrap */
+  .btn-pop {
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Combat text below 1rem on tiny screens */
+  h1, h2, h3 {
+    overflow-wrap: break-word;
+  }
+}
+
+/* =========================================================
+   Prevent any accidental horizontal overflow at every size
+   ========================================================= */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
