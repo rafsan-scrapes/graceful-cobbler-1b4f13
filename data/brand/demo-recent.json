@@ -1,5 +1,5 @@
 {
-  "slug": "demo-recent",
+  "slug": "demo-case",
   "demo": true,
   "brand": {
     "name": "Acme Notes",
@@ -10,9 +10,13 @@
     "customer_value_basis": "Sample: $10 a month Pro plan over a 12-month average customer life."
   },
   "research": {
-    "mode": "recent",
+    "mode": "case_study",
     "source": "SponsorRadar",
     "as_of": "2026-09",
+    "competitor": {
+      "name": "Rival Notes",
+      "website": "https://example.com"
+    },
     "channels": [
       {
         "url": "https://www.youtube.com/@indydevdan",
@@ -21,22 +25,24 @@
       {
         "url": "https://www.youtube.com/@theryanthomas",
         "times_sponsored": 2
-      },
-      {
-        "url": "https://www.youtube.com/@emergentgarden",
-        "times_sponsored": 1
-      },
-      {
-        "url": "https://www.youtube.com/@Codacus",
-        "times_sponsored": 1
       }
     ],
     "featured_video": {
       "url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
-      "title": "Sample: a recent video sponsored by the brand",
-      "published": "2026-09",
-      "views": 84200
-    }
+      "title": "Sample: a video sponsored by the competitor"
+    },
+    "estimated_revenue_usd": {
+      "low": 40000,
+      "high": 90000
+    },
+    "estimate_method": "Sample method: combined median views of the two channels multiplied by a 0.8% link click rate, a 2.5% click-to-customer rate and a $120 customer value. Replace with the real method for each case.",
+    "estimate_sources": [
+      {
+        "label": "SponsorRadar listing (sample)",
+        "url": "https://example.com/source"
+      }
+    ],
+    "outcome_summary": "Sample: estimated revenue linked to two creator sponsorships over the period tracked."
   },
   "creators": [
     {
@@ -100,13 +106,6 @@
           }
         ]
       },
-      "media_kit_url": "https://example.com/demo-creator-one-media-kit.pdf",
-      "best_integration": {
-        "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
-        "brand": "A note-taking app",
-        "title": "Sample integration",
-        "note": "Sample note: shows how this creator demos a software product on screen."
-      },
       "fit_points": [
         "Sample: audience is mostly 25–34 professionals, the core buyer for a note-taking app.",
         "Sample: reviews software with screen recordings, which suits this kind of product.",
@@ -139,6 +138,23 @@
         200,
         197,
         190
+      ],
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+          "brand": "Sample App One",
+          "published": "2026-08"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+          "brand": "Sample App Two",
+          "published": "2026-06"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+          "brand": "Sample App Three",
+          "published": "2026-03"
+        }
       ]
     },
     {
@@ -190,7 +206,6 @@
           }
         ]
       },
-      "media_kit_url": "https://example.com/demo-creator-two-media-kit.pdf",
       "fit_points": [
         "Sample: larger reach for a brand that wants volume, with a majority US audience.",
         "Sample: long-form reviews give room for a full product walkthrough."

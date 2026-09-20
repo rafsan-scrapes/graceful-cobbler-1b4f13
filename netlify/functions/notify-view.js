@@ -18,9 +18,7 @@ const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const EVENTS = {
   view: 'opened their page',
   cta_book: 'clicked "Book a call"',
-  cta_reply_yes: 'clicked "Reply yes by email"',
-  cta_email: 'clicked "Email us"',
-  cta_media_kit: 'opened a media kit'
+  cta_reply_yes: 'clicked "Say yes via email"'
 };
 
 const json = (statusCode) => ({ statusCode }); // beacons never need a response body

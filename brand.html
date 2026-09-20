@@ -122,7 +122,7 @@ p { margin: 0; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
 .tile { background: var(--paper); border: 3px solid var(--ink); border-radius: 16px; padding: 1rem 1.1rem; box-shadow: 4px 4px 0 var(--ink); }
 .tile b { display: block; font-family: var(--font-display); font-weight: 900; font-size: 1.85rem; letter-spacing: -0.03em; line-height: 1.05; }
-.c-col .tiles { grid-template-columns: repeat(2, 1fr); }
+.c-grid .tiles { grid-template-columns: repeat(2, 1fr); }
 .tile span { display: block; font-size: .85rem; color: var(--inksoft); margin-top: .35rem; line-height: 1.3; }
 
 /* ---------- Sections ---------- */
@@ -199,9 +199,10 @@ p { margin: 0; }
 .c-id .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
 .c-subs { text-align: right; }
 .c-subs b { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; line-height: 1; }
-.c-grid { display: grid; gap: 2rem; }
-@media (min-width: 900px) { .c-grid { grid-template-columns: 1.05fr .95fr; gap: 2.5rem; } }
-.c-col { display: grid; gap: 1.75rem; align-content: start; }
+.c-grid { display: grid; gap: 2rem; align-items: start; }
+@media (min-width: 900px) { .c-grid { grid-template-columns: 1.05fr .95fr; gap: 2.5rem; } .c-grid--one { grid-template-columns: 1fr; } }
+.c-block { margin-top: 2.5rem; }
+.c-grid--one .tiles { max-width: 640px; }
 .fit { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .8rem; }
 .fit li { display: grid; grid-template-columns: 26px 1fr; gap: .7rem; align-items: start; }
 .fit li::before { content: "✓"; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--yolk); border: 2px solid var(--ink); font-weight: 900; font-size: .8rem; line-height: 1; margin-top: 1px; }
@@ -210,7 +211,20 @@ p { margin: 0; }
 .bar i { display: block; height: 14px; border: 2px solid var(--ink); border-radius: 99px; background: var(--paper); overflow: hidden; position: relative; }
 .bar i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--yolk); border-right: 2px solid var(--ink); }
 .bar b { font-family: var(--font-display); font-weight: 800; text-align: right; font-size: .85rem; }
-.aud-cols { display: grid; gap: 1.5rem; }
+.aud-cols { display: grid; gap: 1.5rem 3rem; max-width: 980px; }
+@media (min-width: 700px) { .aud-cols { grid-template-columns: 1fr 1fr; } .aud-cols.one { grid-template-columns: 1fr; max-width: 480px; } }
+.past > h3 { margin-bottom: 1.1rem; }
+.past-grid { display: grid; gap: 1.75rem; }
+.past-item { margin: 0; }
+.past-item figcaption { margin-top: .9rem; }
+.past-item figcaption p { margin-top: .25rem; }
+@media (min-width: 700px) {
+  .past-grid:not(.past-grid--one) { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); max-width: calc(var(--n) * 520px); }
+  .past-grid--one { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); align-items: center; gap: 2.5rem; }
+  .past-grid--one.solo { grid-template-columns: minmax(0, 520px); }
+}
+.past-note { display: grid; gap: .5rem; align-content: center; padding: 1.5rem; }
+.past-note p:not(.small) { font-size: 1.05rem; }
 .aud-cols h4 { font-size: .95rem; font-weight: 800; }
 .proj { margin-top: 2.25rem; }
 .proj-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; margin-bottom: 1.25rem; }
@@ -282,9 +296,12 @@ table.cmp-t { width: 100%; min-width: 520px; border-collapse: collapse; font-var
 
 /* ---------- Book ---------- */
 .book-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.75rem; }
+.yes-help { text-align: center; margin: 1.1rem auto 0; max-width: 46ch; font-weight: 600; }
+.yes-help a { text-decoration: underline; text-decoration-thickness: 2px; }
 .book-card { margin-top: 2.5rem; background: var(--ivory); padding: .75rem; min-height: 420px; }
 #cal-inline { width: 100%; min-height: 400px; overflow: auto; }
 .print-only { display: none; }
+.yes-help[hidden] { display: none; }
 
 /* ---------- Footer & sticky ---------- */
 .foot { background: var(--ink); color: var(--ivory); padding: 2.5rem 0 3rem; }
@@ -313,7 +330,7 @@ table.cmp-t { width: 100%; min-width: 520px; border-collapse: collapse; font-var
 
 /* ---------- Print / PDF (for forwarding) ---------- */
 @media print {
-  .top .btn, .sticky-cta, .skip, .video button .play, .book-card, .calc-inputs, .demo-ribbon { display: none !important; }
+  .top .btn, .sticky-cta, .yes-help, .skip, .video button .play, .book-card, .calc-inputs, .demo-ribbon { display: none !important; }
   .top { position: static; }
   .card, .tile, .chan, .calc-line, .video, .btn { box-shadow: none !important; }
   .sec { break-inside: avoid; padding: 1.75rem 0; }
@@ -593,15 +610,40 @@ function projInner(c) {
     <p class="proj-foot">${hasRev ? '' : `Add a value per customer in the calculator below to see revenue. `}These are planning estimates, not guarantees. Assumptions are listed further down.</p>`;
 }
 
+function renderPast(list) {
+  const n = list.length, one = n === 1;
+  const cap = p => {
+    const when = p.published ? monthLabel(p.published) : '';
+    const head = p.brand || p.title || '';
+    return { head, when, note: p.note || '' };
+  };
+  if (one) {
+    const p = list[0], c = cap(p), has = c.head || c.note;
+    return `<div class="c-block past"><h3>A past integration</h3>
+      <div class="past-grid past-grid--one${has ? '' : ' solo'}">
+        <div>${videoEmbed(p.video_url, p.title)}</div>
+        ${has ? `<div class="card stub past-note">${c.head ? `<h3>${esc(c.head)}</h3>` : ''}${c.when ? `<p class="small">${esc(c.when)}</p>` : ''}${c.note ? `<p>${esc(c.note)}</p>` : ''}</div>` : ''}
+      </div></div>`;
+  }
+  return `<div class="c-block past"><h3>Past integrations</h3>
+    <div class="past-grid" style="--n:${n}">${list.map(p => {
+      const c = cap(p);
+      return `<figure class="past-item">${videoEmbed(p.video_url, p.title)}<figcaption>${c.head ? `<strong>${esc(c.head)}</strong>` : ''}${c.when ? `<span class="small"> ${c.head ? '— ' : ''}${esc(c.when)}</span>` : ''}${c.note ? `<p class="small">${esc(c.note)}</p>` : ''}</figcaption></figure>`;
+    }).join('')}</div></div>`;
+}
+
 function renderCreator(c, i) {
-  const b = DATA.brand, prod = b.product || b.name, d = c._d, url = safeUrl(c.channel_url), kit = safeUrl(c.media_kit_url);
+  const b = DATA.brand, prod = b.product || b.name, d = c._d, url = safeUrl(c.channel_url);
   const tiles = [];
   if (pos(d.med)) tiles.push([fmt(d.med), `median views, last ${d.n} videos`]);
   if (pos(d.eng)) tiles.push([d.eng.toFixed(1) + '%', 'engagement (likes + comments per view)']);
   if (pos(c.uploads_per_month)) tiles.push([String(c.uploads_per_month), 'uploads per month']);
   const aud = c.audience || {};
-  const audHtml = [bars(aud.top_countries, 'Where viewers are'), bars(aud.age_groups, 'Age')].filter(Boolean).join('');
-  const bi = c.best_integration, biVid = bi && videoEmbed(bi.video_url, bi.title);
+  const groups = [bars(aud.top_countries, 'Where viewers are'), bars(aud.age_groups, 'Age')].filter(Boolean);
+  // Past deals: 0 to 3. Nothing at all is drawn when a creator has none.
+  const raw = c.past_integrations || (c.best_integration ? [c.best_integration] : []);
+  const past = raw.filter(p => p && ytId(p.video_url)).slice(0, 3);
+  const hasFit = c.fit_points && c.fit_points.length, hasTiles = tiles.length;
   return `<section class="sec creator ${i % 2 ? 'sec--soft' : ''}" id="creator-${i + 1}"><div class="wrap">
     <div class="c-head">
       ${avatar(nameOf(c), c.avatar)}
@@ -612,17 +654,12 @@ function renderCreator(c, i) {
       </div>
       ${pos(c.subscribers) ? `<div class="c-subs"><b>${fmt(c.subscribers)}</b><span class="small">subscribers</span></div>` : ''}
     </div>
-    <div class="c-grid">
-      <div class="c-col">
-        ${c.fit_points && c.fit_points.length ? `<div><h3>Why they fit ${esc(prod)}</h3><ul class="fit">${c.fit_points.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>` : ''}
-        ${biVid ? `<div><p class="video-label">${bi.brand ? `Past integration: ${esc(bi.brand)}` : 'A past integration'}</p>${biVid}${bi.note ? `<p class="small" style="margin-top:.9rem">${esc(bi.note)}</p>` : ''}</div>` : ''}
-        ${kit ? `<div><a class="btn btn--paper" href="${esc(kit)}" target="_blank" rel="noopener" data-track="media_kit" data-who="${esc(nameOf(c))}">Open media kit</a></div>` : ''}
-      </div>
-      <div class="c-col">
-        ${tiles.length ? `<div class="tiles">${tiles.map(([v, l]) => `<div class="tile"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>` : ''}
-        ${audHtml ? `<div class="aud-cols">${audHtml}</div>` : ''}
-      </div>
-    </div>
+    ${hasFit || hasTiles ? `<div class="c-grid${hasFit && hasTiles ? '' : ' c-grid--one'}">
+      ${hasFit ? `<div><h3>Why they fit ${esc(prod)}</h3><ul class="fit">${c.fit_points.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>` : ''}
+      ${hasTiles ? `<div class="tiles">${tiles.map(([v, l]) => `<div class="tile"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>` : ''}
+    </div>` : ''}
+    ${groups.length ? `<div class="c-block"><div class="aud-cols${groups.length === 1 ? ' one' : ''}">${groups.join('')}</div></div>` : ''}
+    ${past.length ? renderPast(past) : ''}
     <div class="card card--ink proj" data-proj="${i}">${projInner(c)}</div>
   </div></section>`;
 }
@@ -697,18 +734,21 @@ function renderHow() {
 }
 
 function renderBook() {
-  const b = DATA.brand, names = DATA.creators.map(nameOf).join(' and ');
-  const subj = encodeURIComponent(`Re: ${b.name} x Brokoby`);
-  const yes = encodeURIComponent(`Yes, please send details on ${names}.\n\nThanks`);
+  const b = DATA.brand, names = DATA.creators.map(nameOf);
+  const list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0];
+  const subj = `Re: ${b.name} x Brokoby`;
+  const text = `Yes, please send me the details on ${list}.\n\nThanks`;
+  const mailto = `mailto:${CONFIG.EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.replace(/\n/g, '\r\n'))}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONFIG.EMAIL)}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(text)}`;
   return `<section class="sec sec--yolk" id="book"><div class="wrap">
     <div class="sec-head" style="margin-inline:auto;text-align:center;justify-items:center">
       <h2>Want to run one of these?</h2>
-      <p class="lede" style="color:rgba(25,25,25,.75)">Book 30 minutes and we'll go through both creators, your goals and a rough timeline. Prefer email? Just reply yes and we'll send everything over.</p>
+      <p class="lede" style="color:rgba(25,25,25,.75)">Book 30 minutes and we'll go through ${names.length > 1 ? 'both creators' : 'the creator'}, your goals and a rough timeline. Prefer email? Just say yes and we'll send everything over.</p>
     </div>
     <div class="book-actions">
-      <a class="btn btn--ink" href="mailto:${CONFIG.EMAIL}?subject=${subj}&body=${yes}" data-track="reply_yes">Reply yes by email</a>
-      <a class="btn btn--paper" href="mailto:${CONFIG.EMAIL}?subject=${subj}" data-track="email">Email ${CONFIG.EMAIL}</a>
+      <a class="btn btn--ink" id="yes-btn" href="${esc(mailto)}" data-track="reply_yes">Say yes via email</a>
     </div>
+    <p class="yes-help" id="yes-help" data-gmail="${esc(gmail)}" hidden></p>
     <div class="card book-card"><div id="cal-inline"></div></div>
     <p class="print-only">Book a call: ${CONFIG.CAL_URL} · ${CONFIG.EMAIL}</p>
   </div></section>`;
@@ -748,6 +788,23 @@ function wireCalc() {
   $('#calc-reset').addEventListener('click', () => {
     conv.value = A.conv_pct.mid; val.value = pos(DATA.brand.customer_value_usd) ? DATA.brand.customer_value_usd : '';
     upd();
+  });
+}
+
+function wireYes() {
+  const btn = $('#yes-btn'), help = $('#yes-help'); if (!btn || !help) return;
+  btn.addEventListener('click', () => {
+    let left = false, copied = false;
+    const mark = () => { left = true; };
+    addEventListener('blur', mark, { once: true });
+    document.addEventListener('visibilitychange', mark, { once: true });
+    try { navigator.clipboard.writeText(CONFIG.EMAIL).then(() => { copied = true; }, () => {}); } catch { /* clipboard unavailable */ }
+    setTimeout(() => {
+      removeEventListener('blur', mark); document.removeEventListener('visibilitychange', mark);
+      if (left) return; // a mail app took focus, so it worked
+      help.innerHTML = `Nothing opened? ${copied ? `We've copied <strong>${esc(CONFIG.EMAIL)}</strong> to your clipboard.` : `Our address is <strong>${esc(CONFIG.EMAIL)}</strong>.`} You can also <a href="${esc(help.dataset.gmail)}" target="_blank" rel="noopener">write it in Gmail</a>.`;
+      help.hidden = false;
+    }, 1500);
   });
 }
 
@@ -832,7 +889,7 @@ async function boot() {
     (DATA.demo ? `<div class="demo-ribbon">DEMO DATA — sample content, not a real brand or real numbers</div>` : '') +
     renderHero() + renderResearch() + DATA.creators.map(renderCreator).join('') + renderCompare() + renderCalc() + renderHow() + renderBook() + renderFooter();
 
-  wireVideos($('#app')); wireCalc(); wireObservers(); armViewBeacon();
+  wireVideos($('#app')); wireCalc(); wireYes(); wireObservers(); armViewBeacon();
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-track]'); if (!t) return;
     send('cta_' + t.dataset.track, t.dataset.who ? { who: t.dataset.who } : undefined);

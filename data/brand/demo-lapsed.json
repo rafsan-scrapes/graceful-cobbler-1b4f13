@@ -101,13 +101,6 @@
           }
         ]
       },
-      "media_kit_url": "https://example.com/demo-creator-one-media-kit.pdf",
-      "best_integration": {
-        "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
-        "brand": "A note-taking app",
-        "title": "Sample integration",
-        "note": "Sample note: shows how this creator demos a software product on screen."
-      },
       "fit_points": [
         "Sample: audience is mostly 25–34 professionals, the core buyer for a note-taking app.",
         "Sample: reviews software with screen recordings, which suits this kind of product.",
@@ -140,6 +133,13 @@
         200,
         197,
         190
+      ],
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+          "brand": "Sample App One",
+          "published": "2026-08"
+        }
       ]
     },
     {
@@ -191,7 +191,6 @@
           }
         ]
       },
-      "media_kit_url": "https://example.com/demo-creator-two-media-kit.pdf",
       "fit_points": [
         "Sample: larger reach for a brand that wants volume, with a majority US audience.",
         "Sample: long-form reviews give room for a full product walkthrough."
@@ -221,6 +220,13 @@
         331,
         283,
         395
+      ],
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+          "brand": "Sample Gadget Co",
+          "published": "2026-07"
+        }
       ]
     }
   ]

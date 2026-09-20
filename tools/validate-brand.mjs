@@ -140,9 +140,21 @@ if (!Array.isArray(cs) || !cs.length) E('creators needs at least one creator'); 
       const eng = (c.recent_video_likes.reduce((a, x) => a + x, 0) + c.recent_video_comments.reduce((a, x) => a + x, 0)) / v.reduce((a, x) => a + x, 0) * 100;
       if (eng > 25) W(`${p}: engagement works out to ${eng.toFixed(1)}%. Check the likes and comments columns.`);
     }
-    if (c.media_kit_url && !httpsUrl(c.media_kit_url)) E(`${p}.media_kit_url must be an https URL`);
-    else if (!c.media_kit_url) W(`${p}.media_kit_url missing. The media kit button will be hidden.`);
-    if (c.best_integration && !ytVideoId(c.best_integration.video_url)) E(`${p}.best_integration.video_url is not a valid YouTube video link`);
+    if (c.media_kit_url !== undefined) E(`${p}.media_kit_url is no longer used. Remove it. Media kits are not linked on the page.`);
+    if (c.best_integration !== undefined) E(`${p}.best_integration was replaced by past_integrations (an array of 0 to 3). Rename and wrap it in [ ].`);
+    if (c.past_integrations !== undefined) {
+      if (!Array.isArray(c.past_integrations)) E(`${p}.past_integrations must be an array. Leave the key out entirely if the creator has none.`);
+      else {
+        if (c.past_integrations.length === 0) W(`${p}.past_integrations is empty. Remove the key instead.`);
+        if (c.past_integrations.length > 3) E(`${p}.past_integrations has ${c.past_integrations.length}. Maximum is 3.`);
+        c.past_integrations.forEach((x, j) => {
+          const q = `${p}.past_integrations[${j}]`;
+          if (!isObj(x) || !ytVideoId(x.video_url)) E(`${q}.video_url must be a valid YouTube video link`);
+          if (isObj(x) && x.published !== undefined && !ym(x.published)) E(`${q}.published must be YYYY-MM`);
+          if (isObj(x) && !x.brand) W(`${q}.brand missing. The caption will be empty.`);
+        });
+      }
+    }
     const fp = c.fit_points;
     if (!Array.isArray(fp) || !fp.length) E(`${p}.fit_points needs 2 to 4 short points`);
     else { if (fp.length < 2 || fp.length > 4) W(`${p}.fit_points has ${fp.length}. Aim for 2 to 4.`); fp.forEach((t, j) => { if (!str(t)) E(`${p}.fit_points[${j}] is empty`); else if (t.length > 160) W(`${p}.fit_points[${j}] is ${t.length} chars. Keep under 160.`); }); }
