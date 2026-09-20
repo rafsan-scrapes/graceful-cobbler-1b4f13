@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Brokoby — Creator shortlist</title>
+<meta name="description" content="A custom YouTube creator shortlist prepared by Brokoby." />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta property="og:title" content="A creator shortlist, prepared for you — Brokoby" />
+<meta property="og:description" content="Two YouTube creators matched to your product, with audience data, past integrations and projected results." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#FFFFF0" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F6C324' stroke='%23191919' stroke-width='4'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='800' font-size='28' text-anchor='middle' fill='%23191919'%3EB%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+/* =====================================================================
+   BROKOBY BRAND PAGE — styles
+   Tokens first; components after. Everything is self-contained so the
+   page never depends on css/style.css (which is cached "immutable").
+   ===================================================================== */
+:root {
+  --ivory: #FFFFF0;
+  --ink: #191919;
+  --yolk: #F6C324;
+  --paper: #FFFFFF;
+  --yolksoft: #FCEFC2;
+  --inksoft: rgba(25, 25, 25, 0.68);
+  --ivorysoft: rgba(255, 255, 240, 0.78);
+  --font-display: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Karla', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wrap: 1120px;
+  --gutter: clamp(1.1rem, 4vw, 2rem);
+  --r-card: 22px;
+  --shadow: 6px 6px 0 var(--ink);
+  --shadow-sm: 4px 4px 0 var(--ink);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+html { scroll-behavior: smooth; scroll-padding-top: calc(84px + env(safe-area-inset-top, 0px)); }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance; }
+h1 { font-weight: 900; font-size: clamp(2.15rem, 5.6vw, 3.6rem); line-height: 1.04; }
+h2 { font-weight: 800; font-size: clamp(1.7rem, 3.8vw, 2.5rem); }
+h3 { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.01em; }
+p { margin: 0; }
+.lede { font-size: 1.15rem; color: var(--inksoft); max-width: 60ch; }
+.small { font-size: 0.875rem; color: var(--inksoft); }
+.muted-on-ink { color: var(--ivorysoft); }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+.skip { position: absolute; left: -999px; top: 0; background: var(--yolk); border: 3px solid var(--ink); padding: .5rem 1rem; font-family: var(--font-display); font-weight: 700; z-index: 100; border-radius: 999px; }
+.skip:focus { left: 1rem; top: 1rem; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+.sec--ink :focus-visible, .foot :focus-visible { outline-color: var(--yolk); }
+
+/* ---------- Seal (signature mark) ---------- */
+.seal {
+  --s: 44px;
+  width: var(--s); height: var(--s);
+  flex: none;
+  border-radius: 50%;
+  background: var(--yolk);
+  border: 3px solid var(--ink);
+  display: grid; place-items: center;
+  position: relative;
+  font-family: var(--font-display); font-weight: 900; color: var(--ink);
+  font-size: calc(var(--s) * 0.4); line-height: 1; text-align: center;
+}
+.seal::before { content: ""; position: absolute; inset: 11%; border: 2px dashed var(--ink); border-radius: 50%; pointer-events: none; }
+.seal > span { position: relative; }
+.seal--xl { --s: 150px; font-size: 1.05rem; line-height: 1.15; letter-spacing: -0.02em; box-shadow: var(--shadow-sm); }
+.seal--xl small { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; margin-top: 2px; }
+.seal--num { --s: 44px; font-size: 1rem; box-shadow: 3px 3px 0 var(--ink); }
+.ava { --s: 56px; width: var(--s); height: var(--s); flex: none; border-radius: 50%; border: 3px solid var(--ink); overflow: hidden; background: var(--yolksoft); }
+.ava img { width: 100%; height: 100%; object-fit: cover; }
+.ava--logo { border-radius: 14px; background: var(--paper); }
+.ava--logo img { object-fit: contain; padding: 6px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--font-display); font-weight: 700; font-size: .95rem; line-height: 1;
+  padding: .95rem 1.5rem;
+  background: var(--yolk); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none; cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+.btn--paper { background: var(--paper); }
+.btn--ink { background: var(--ink); color: var(--ivory); }
+.btn--sm { padding: .7rem 1.15rem; font-size: .85rem; }
+.sec--ink .btn { box-shadow: 4px 4px 0 var(--yolk); border-color: var(--ivory); }
+.sec--ink .btn:hover { box-shadow: 6px 6px 0 var(--yolk); }
+.sec--ink .btn:active { box-shadow: 1px 1px 0 var(--yolk); }
+.link { font-family: var(--font-display); font-weight: 700; font-size: .9rem; text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--yolk); text-underline-offset: 4px; }
+.link:hover { text-decoration-color: var(--ink); }
+
+/* ---------- Cards, tiles, pills ---------- */
+.card { background: var(--paper); border: 3px solid var(--ink); border-radius: var(--r-card); box-shadow: var(--shadow); padding: 1.5rem; }
+.stub { position: relative; }
+.stub::after { content: ""; position: absolute; inset: 8px; border: 2px dashed rgba(25,25,25,.22); border-radius: 14px; pointer-events: none; }
+.card--ink { background: var(--ink); color: var(--ivory); box-shadow: 6px 6px 0 var(--yolk); border-color: var(--ink); }
+.pill { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-display); font-weight: 700; font-size: .78rem; line-height: 1; padding: .4rem .75rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); }
+.pill--yolk { background: var(--yolk); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+.tile { background: var(--paper); border: 3px solid var(--ink); border-radius: 16px; padding: 1rem 1.1rem; box-shadow: 4px 4px 0 var(--ink); }
+.tile b { display: block; font-family: var(--font-display); font-weight: 900; font-size: 1.85rem; letter-spacing: -0.03em; line-height: 1.05; }
+.c-col .tiles { grid-template-columns: repeat(2, 1fr); }
+.tile span { display: block; font-size: .85rem; color: var(--inksoft); margin-top: .35rem; line-height: 1.3; }
+
+/* ---------- Sections ---------- */
+.sec { padding: clamp(3rem, 7vw, 5.5rem) 0; border-top: 3px solid var(--ink); }
+.sec--soft { background: var(--yolksoft); }
+.sec--ink { background: var(--ink); color: var(--ivory); }
+.sec--yolk { background: var(--yolk); }
+.sec-head { display: grid; gap: .9rem; margin-bottom: 2.25rem; max-width: 46rem; }
+.sec--ink .lede { color: var(--ivorysoft); }
+
+/* ---------- Header ---------- */
+.top { position: sticky; top: 0; z-index: 50; background: var(--ivory); border-bottom: 3px solid var(--ink); padding-top: env(safe-area-inset-top, 0px); }
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 72px; }
+.brandmark { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
+.brandmark .seal { --s: 38px; box-shadow: 3px 3px 0 var(--ink); }
+.brandmark b { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
+.top-mid { flex: 1; min-width: 0; display: flex; justify-content: center; }
+.for-tag { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 719px) { .top-mid { display: none; } .top .btn { display: none; } .top-in { justify-content: flex-start; } }
+
+/* ---------- Hero ---------- */
+.hero { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem); }
+.hero-grid { display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 3.5rem; } }
+.hero h1 { margin: 1.1rem 0 1.25rem; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.5rem; margin-top: 1.75rem; }
+.hero-note { margin-top: 1.1rem; font-weight: 600; }
+.deal { position: relative; display: grid; padding: .5rem 0; }
+.deal { min-height: 300px; }
+.deal .card { width: min(100%, 300px); padding: 1.25rem 1.35rem; }
+.deal-a { transform: rotate(-2.5deg); justify-self: start; }
+.deal-b { transform: rotate(2.5deg); justify-self: end; margin-top: 1.1rem; }
+.deal .seal--xl { position: absolute; left: -6px; bottom: -14px; rotate: -8deg; z-index: 2; animation: stamp .75s .3s cubic-bezier(.2, 1.5, .4, 1) both; }
+@keyframes stamp { from { scale: 2.1; rotate: -28deg; opacity: 0; } 60% { opacity: 1; } to { scale: 1; rotate: -8deg; opacity: 1; } }
+.deal-row { display: flex; align-items: center; gap: .8rem; margin-top: .7rem; }
+.deal-row + .deal-row { margin-top: .55rem; }
+.deal-row .ava { --s: 38px; border-width: 2px; }
+.deal-row strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1rem; line-height: 1.15; }
+.deal-row span { font-size: .82rem; color: var(--inksoft); }
+@media (max-width: 899px) { .deal { min-height: 0; padding-bottom: 1.5rem; } .deal .card { width: 82%; } .deal .seal--xl { --s: 104px; font-size: .8rem; left: -4px; bottom: -6px; } .deal .seal--xl small { font-size: .5rem; } }
+
+/* ---------- Research ---------- */
+.research-grid { display: grid; gap: 2rem; align-items: start; margin-top: 2rem; }
+@media (min-width: 900px) { .research-grid { grid-template-columns: 1.1fr .9fr; } }
+.video-label { font-family: var(--font-display); font-weight: 700; font-size: .9rem; margin-bottom: .75rem; }
+.video { position: relative; aspect-ratio: 16 / 9; border: 3px solid var(--ink); border-radius: 18px; overflow: hidden; background: var(--ink); box-shadow: var(--shadow); }
+.video button, .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; cursor: pointer; background: transparent; }
+.video img { width: 100%; height: 100%; object-fit: cover; }
+.video .play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 74px; height: 74px; border-radius: 50%; background: var(--yolk); border: 3px solid var(--ink); display: grid; place-items: center; box-shadow: 4px 4px 0 var(--ink); transition: scale .12s; }
+.video button:hover .play { scale: 1.06; }
+.video .play svg { width: 26px; height: 26px; margin-left: 4px; }
+.video-cap { margin-top: 1rem; }
+.video-cap h3 { font-size: 1.05rem; line-height: 1.3; }
+.chan-list { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; }
+.chan { display: flex; align-items: center; gap: .9rem; background: var(--paper); border: 3px solid var(--ink); border-radius: 16px; padding: .8rem 1rem; box-shadow: 4px 4px 0 var(--ink); }
+.chan a { text-decoration: none; }
+.chan strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1rem; line-height: 1.2; }
+.chan span { font-size: .85rem; color: var(--inksoft); }
+.chan .ava { --s: 46px; }
+.callout { display: flex; gap: 1rem; align-items: center; margin-top: 1.75rem; padding: 1.1rem 1.35rem; background: var(--yolk); border: 3px solid var(--ink); border-radius: 18px; box-shadow: var(--shadow-sm); }
+.callout p { font-weight: 600; }
+.estimate { margin-top: 2rem; }
+.estimate .big { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 6vw, 3.2rem); letter-spacing: -0.03em; line-height: 1; margin: .9rem 0 .6rem; color: var(--yolk); }
+.estimate details { margin-top: 1.1rem; border-top: 2px dashed rgba(255,255,240,.3); padding-top: 1rem; }
+.estimate summary { cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: .92rem; }
+.estimate details p { margin-top: .75rem; color: var(--ivorysoft); font-size: .95rem; }
+.estimate details ul { margin: .75rem 0 0; padding-left: 1.1rem; font-size: .92rem; }
+.estimate details a { color: var(--yolk); }
+
+/* ---------- Creator sections ---------- */
+.c-head { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.c-head .ava, .c-head > .seal { --s: 84px; }
+.c-id { flex: 1; min-width: 220px; display: grid; gap: .55rem; }
+.c-id .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.c-subs { text-align: right; }
+.c-subs b { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; line-height: 1; }
+.c-grid { display: grid; gap: 2rem; }
+@media (min-width: 900px) { .c-grid { grid-template-columns: 1.05fr .95fr; gap: 2.5rem; } }
+.c-col { display: grid; gap: 1.75rem; align-content: start; }
+.fit { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .8rem; }
+.fit li { display: grid; grid-template-columns: 26px 1fr; gap: .7rem; align-items: start; }
+.fit li::before { content: "✓"; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--yolk); border: 2px solid var(--ink); font-weight: 900; font-size: .8rem; line-height: 1; margin-top: 1px; }
+.bars { display: grid; gap: .55rem; margin-top: .9rem; }
+.bar { display: grid; grid-template-columns: 7.5rem 1fr 2.8rem; gap: .75rem; align-items: center; font-size: .9rem; }
+.bar i { display: block; height: 14px; border: 2px solid var(--ink); border-radius: 99px; background: var(--paper); overflow: hidden; position: relative; }
+.bar i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--yolk); border-right: 2px solid var(--ink); }
+.bar b { font-family: var(--font-display); font-weight: 800; text-align: right; font-size: .85rem; }
+.aud-cols { display: grid; gap: 1.5rem; }
+.aud-cols h4 { font-size: .95rem; font-weight: 800; }
+.proj { margin-top: 2.25rem; }
+.proj-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; margin-bottom: 1.25rem; }
+.proj-head h3 { font-size: 1.35rem; }
+.tbl-wrap { overflow-x: auto; }
+table.proj-t { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 440px; font-variant-numeric: tabular-nums; }
+.proj-t th, .proj-t td { padding: .8rem .9rem; text-align: right; border-bottom: 2px dashed rgba(255,255,240,.22); }
+.proj-t th:first-child, .proj-t td:first-child { text-align: left; }
+.proj-t thead th { font-family: var(--font-display); font-weight: 700; font-size: .85rem; color: var(--ivorysoft); }
+.proj-t tbody th { font-weight: 600; color: var(--ivorysoft); font-size: .95rem; }
+.proj-t td { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; }
+.proj-t tr:last-child th, .proj-t tr:last-child td { border-bottom: 0; }
+.proj-t .mid { background: var(--yolk); color: var(--ink); }
+.proj-t thead .mid { border-radius: 12px 12px 0 0; color: var(--ink); font-weight: 800; }
+.proj-t tbody tr:last-child .mid { border-radius: 0 0 12px 12px; }
+.proj-t .mid { border-bottom-color: rgba(25,25,25,.2); }
+.proj-foot { margin-top: 1rem; font-size: .85rem; color: var(--ivorysoft); }
+
+@media (max-width: 599px) {
+  table.proj-t { min-width: 0; }
+  .proj-t th, .proj-t td { padding: .7rem .35rem; }
+  .proj-t th:first-child, .proj-t td:first-child { padding-left: 0; }
+  .proj-t td { font-size: 1rem; }
+  .proj-t tbody th { font-size: .85rem; }
+  .proj-t thead th { font-size: .75rem; }
+  .card--ink.proj { padding: 1.25rem 1rem; }
+}
+
+/* ---------- Compare ---------- */
+.cmp { overflow-x: auto; padding: 0; }
+table.cmp-t { width: 100%; min-width: 520px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.cmp-t th, .cmp-t td { padding: .95rem 1.25rem; text-align: left; border-bottom: 2px dashed rgba(25,25,25,.2); }
+.cmp-t tr:last-child th, .cmp-t tr:last-child td { border-bottom: 0; }
+.cmp-t thead th { vertical-align: bottom; border-bottom: 3px solid var(--ink); }
+.cmp-t tbody th { font-weight: 600; color: var(--inksoft); font-size: .95rem; }
+.cmp-t td { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; }
+.cmp-who { display: flex; align-items: center; gap: .65rem; font-family: var(--font-display); font-weight: 800; font-size: 1rem; }
+.cmp-who .ava { --s: 36px; border-width: 2px; }
+
+@media (max-width: 599px) {
+  table.cmp-t { min-width: 0; }
+  .cmp-t th, .cmp-t td { padding: .75rem .6rem; }
+  .cmp-t td { font-size: 1rem; }
+  .cmp-t tbody th { font-size: .82rem; }
+  .cmp-who { flex-direction: column; align-items: flex-start; font-size: .85rem; }
+}
+
+/* ---------- Calculator ---------- */
+.calc-grid { display: grid; gap: 2rem; }
+@media (min-width: 900px) { .calc-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.field { display: grid; gap: .4rem; }
+.field label { font-family: var(--font-display); font-weight: 700; font-size: .9rem; }
+.field input { font: inherit; font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; padding: .7rem 1rem; border: 3px solid var(--ink); border-radius: 14px; background: var(--paper); color: var(--ink); width: 100%; box-shadow: 3px 3px 0 var(--ink); }
+.field input::placeholder { color: rgba(25,25,25,.35); font-weight: 600; }
+.calc-inputs { display: grid; gap: 1.25rem; grid-template-columns: 1fr 1fr; }
+@media (max-width: 480px) { .calc-inputs { grid-template-columns: 1fr; } }
+.calc-out { display: grid; gap: .9rem; }
+.calc-line { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .9rem 1.1rem; background: var(--paper); border: 3px solid var(--ink); border-radius: 16px; box-shadow: 4px 4px 0 var(--ink); }
+.calc-line strong { font-family: var(--font-display); font-weight: 800; }
+.calc-line span { font-family: var(--font-display); font-weight: 800; text-align: right; }
+.assump { margin-top: 1.5rem; font-size: .9rem; color: var(--inksoft); display: grid; gap: .5rem; }
+
+/* ---------- How it works ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.75rem; }
+.steps li { display: grid; grid-template-columns: 44px 1fr; gap: 1.1rem; align-items: start; }
+.steps p { color: var(--inksoft); margin-top: .35rem; }
+.how-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 900px) { .how-grid { grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: start; } }
+
+/* ---------- Book ---------- */
+.book-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.75rem; }
+.book-card { margin-top: 2.5rem; background: var(--ivory); padding: .75rem; min-height: 420px; }
+#cal-inline { width: 100%; min-height: 400px; overflow: auto; }
+.print-only { display: none; }
+
+/* ---------- Footer & sticky ---------- */
+.foot { background: var(--ink); color: var(--ivory); padding: 2.5rem 0 3rem; }
+.foot-in { display: grid; gap: 1.25rem; }
+.foot .brandmark b { color: var(--ivory); }
+.foot .brandmark .seal { box-shadow: none; }
+.foot p { font-size: .82rem; color: rgba(255,255,240,.6); max-width: 70ch; }
+.foot a { color: var(--yolk); }
+.sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: .75rem var(--gutter) calc(.75rem + env(safe-area-inset-bottom, 0px)); background: var(--ivory); border-top: 3px solid var(--ink); transform: translateY(110%); visibility: hidden; transition: transform .2s ease, visibility 0s linear .2s; display: flex; }
+.sticky-cta.on { transform: none; visibility: visible; transition: transform .2s ease; }
+.sticky-cta .btn { width: 100%; }
+@media (min-width: 720px) { .sticky-cta { display: none; } }
+@media (max-width: 719px) { .foot { padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); } }
+
+/* ---------- State ---------- */
+.state { min-height: 60vh; display: grid; place-items: center; text-align: center; padding: 3rem var(--gutter); }
+.state .card { max-width: 30rem; }
+.demo-ribbon { background: var(--ink); color: var(--yolk); text-align: center; font-family: var(--font-display); font-weight: 700; font-size: .85rem; padding: .5rem 1rem; }
+.skeleton { height: 60vh; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; color: var(--inksoft); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .deal .seal--xl { animation: none; }
+  .btn, .sticky-cta, .sticky-cta.on { transition: none; }
+}
+
+/* ---------- Print / PDF (for forwarding) ---------- */
+@media print {
+  .top .btn, .sticky-cta, .skip, .video button .play, .book-card, .calc-inputs, .demo-ribbon { display: none !important; }
+  .top { position: static; }
+  .card, .tile, .chan, .calc-line, .video, .btn { box-shadow: none !important; }
+  .sec { break-inside: avoid; padding: 1.75rem 0; }
+  .creator, .proj { break-inside: avoid; }
+  .print-only { display: block; margin-top: 1rem; font-weight: 700; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .deal .seal--xl { animation: none; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brandmark" href="https://brokoby.com" aria-label="Brokoby home">
+      <span class="seal" aria-hidden="true"><span>B</span></span>
+      <b>brokoby</b>
+    </a>
+    <div class="top-mid"><span class="pill pill--yolk for-tag" id="for-tag" hidden></span></div>
+    <a class="btn btn--sm" href="#book" data-track="book">Book a call</a>
+  </div>
+</header>
+
+<main id="main">
+  <div id="app"><div class="skeleton" role="status">Preparing your page…</div></div>
+  <noscript>
+    <div class="state"><div class="card">
+      <h2>This page needs JavaScript</h2>
+      <p style="margin-top:.75rem">Please enable it, or email <a href="mailto:info@brokoby.com">info@brokoby.com</a> and we'll send the shortlist directly.</p>
+    </div></div>
+  </noscript>
+</main>
+
+<div class="sticky-cta" id="sticky" aria-hidden="true">
+  <a class="btn" href="#book" data-track="book" tabindex="-1">Book a 30-minute call</a>
+</div>
+
+<script>
+/* =====================================================================
+   BROKOBY BRAND PAGE — renderer
+   Reads /data/brand/<slug>.json and draws the page. The agent only ever
+   writes JSON; every number on the page is computed here from raw inputs.
+   ===================================================================== */
+(() => {
+'use strict';
+
+/* ---- Edit these once ------------------------------------------------ */
+const CONFIG = {
+  EMAIL: 'info@brokoby.com',
+  CAL_LINK: 'brokoby/30min',
+  CAL_URL: 'https://cal.com/brokoby/30min',
+  DATA_PATH: '/data/brand/',
+  NOTIFY_ENDPOINT: '/.netlify/functions/notify-view',
+  // Planning assumptions. Not sourced benchmarks. Override per brand in JSON ("assumptions").
+  DEFAULTS: {
+    views_multiplier: { low: 0.8, mid: 1.0, high: 1.2 },  // × median views of recent videos
+    ctr_pct:          { low: 0.4, mid: 0.8, high: 1.5 },  // % of views that click the sponsor link
+    conv_pct:         { low: 1.0, mid: 2.5, high: 4.0 }   // % of clicks that become customers
+  }
+};
+
+/* ---- Helpers -------------------------------------------------------- */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const isNum = v => typeof v === 'number' && Number.isFinite(v);
+const pos = v => isNum(v) && v > 0;
+const safeUrl = u => { try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : ''; } catch { return ''; } };
+const safeAsset = p => (typeof p === 'string' && /^(\/assets\/[\w\-./]+|https:\/\/[^\s"'<>]+)$/.test(p)) ? p : '';
+const median = a => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
+const NUMWORD = ['No', 'One', 'Two', 'Three', 'Four'];
+
+function fmt(n) {
+  if (!isNum(n)) return '';
+  const a = Math.abs(n);
+  if (a >= 1e6) return (n / 1e6).toFixed(a >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M';
+  if (a >= 1e4) return Math.round(n / 1e3) + 'K';
+  if (a >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  if (a >= 10) return String(Math.round(n));
+  return n.toFixed(1).replace(/\.0$/, '');
+}
+const money = n => isNum(n) ? '$' + fmt(n) : '';
+const pct = (n, d = 1) => isNum(n) ? (n.toFixed(d).replace(/\.0+$/, '')) + '%' : '';
+
+function monthLabel(ym) {
+  const m = /^(\d{4})-(\d{2})/.exec(ym || ''); if (!m) return '';
+  return new Date(Date.UTC(+m[1], +m[2] - 1, 1)).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+function ytId(u) {
+  try {
+    const x = new URL(u), h = x.hostname.replace(/^www\.|^m\./, '');
+    let id = null;
+    if (h === 'youtu.be') id = x.pathname.slice(1).split('/')[0];
+    else if (h.endsWith('youtube.com') || h.endsWith('youtube-nocookie.com')) {
+      id = x.searchParams.get('v') || (x.pathname.match(/\/(?:shorts|embed|live)\/([\w-]{11})/) || [])[1];
+    }
+    return id && /^[\w-]{11}$/.test(id) ? id : null;
+  } catch { return null; }
+}
+function handleFrom(u) { const m = /youtube\.com\/(@[\w.\-]+)/i.exec(u || ''); return m ? m[1] : ''; }
+function nameOf(o) { return o.name || handleFrom(o.channel_url || o.url) || 'Channel'; }
+
+const initial = n => { const ch = String(n || 'B').trim().replace(/^@/, '')[0] || 'B'; return /[A-Za-z0-9]/.test(ch) ? ch.toUpperCase() : 'B'; };
+function avatar(name, src, { logo = false, size } = {}) {
+  const st = size ? ` style="--s:${size}px"` : '';
+  const s = safeAsset(src), i = initial(name);
+  if (s) return `<span class="ava${logo ? ' ava--logo' : ''}"${st}><img src="${esc(s)}" alt="" loading="lazy" onerror="this.parentNode.replaceWith(Object.assign(document.createElement('span'),{className:'seal',innerHTML:'<span>${i}</span>'}))"></span>`;
+  return `<span class="seal"${size ? ` style="--s:${size}px"` : ''} aria-hidden="true"><span>${i}</span></span>`;
+}
+
+function videoEmbed(url, title) {
+  const id = ytId(url); if (!id) return '';
+  return `<div class="video" data-vid="${id}">
+    <button type="button" aria-label="Play video${title ? ': ' + esc(title) : ''}">
+      <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+      <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z" fill="#191919"/></svg></span>
+    </button></div>`;
+}
+
+/* ---- Data ----------------------------------------------------------- */
+function getSlug() {
+  const m = location.pathname.match(/\/brand\/([^/?#]+)/);
+  const s = (m ? decodeURIComponent(m[1]) : new URLSearchParams(location.search).get('slug') || '').toLowerCase();
+  return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s) && s.length <= 60 ? s : null;
+}
+
+let DATA, SLUG, A, ST;
+
+function derive(c) {
+  const V = c.recent_video_views || [], L = c.recent_video_likes || [], M = c.recent_video_comments || [];
+  const v = V.filter(pos), sum = a => a.reduce((x, y) => x + y, 0);
+  const d = { n: v.length };
+  if (v.length) {
+    d.med = median(v); d.avg = mean(v);
+    // Engagement only when likes and comments were supplied for every video in the same order.
+    if (V.length && V.every(pos) && L.length === V.length && M.length === V.length && L.every(isNum) && M.every(isNum)) d.eng = (sum(L) + sum(M)) / sum(V) * 100;
+  }
+  return d;
+}
+
+function project(c) {
+  const d = c._d; if (!d.med) return null;
+  const scale = ST.conv == null ? 1 : ST.conv / A.conv_pct.mid;
+  return ['low', 'mid', 'high'].map(k => {
+    const views = d.med * A.views_multiplier[k];
+    const clicks = views * A.ctr_pct[k] / 100;
+    const cust = clicks * (A.conv_pct[k] * scale) / 100;
+    return { views, clicks, cust, rev: pos(ST.value) ? cust * ST.value : null };
+  });
+}
+
+/* ---- Renderers ------------------------------------------------------ */
+const word = () => (DATA.brand.conversion_word || 'customers');
+
+function renderHero() {
+  const b = DATA.brand, cs = DATA.creators, n = cs.length, prod = b.product || b.name;
+  const who = b.contact_first_name ? `Prepared for ${esc(b.contact_first_name)} at ${esc(b.name)}` : `Prepared for ${esc(b.name)}`;
+  return `<section class="hero" id="top"><div class="wrap hero-grid">
+    <div>
+      <span class="pill pill--yolk">${who}</span>
+      <h1>${NUMWORD[n] || n} YouTube creator${n === 1 ? '' : 's'} matched to ${esc(prod)}</h1>
+      <p class="lede">We looked at how ${esc(b.name)} shows up on YouTube, then picked the ${n === 1 ? 'channel' : n + ' channels'} we'd put a sponsorship budget behind. Audience data, past integrations and projected results are all below.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#book" data-track="book">Book a 30-minute call</a>
+        <a class="link" href="#creator-1">See the creators</a>
+      </div>
+      <p class="small hero-note">Commission-only. Nothing upfront.</p>
+    </div>
+    <div class="deal" aria-hidden="true">
+      <div class="card stub deal-a">
+        <p class="small">Prepared for</p>
+        <div class="deal-row">${avatar(b.name, b.logo, { logo: true })}<div><strong>${esc(b.name)}</strong>${b.category ? `<span>${esc(b.category)}</span>` : ''}</div></div>
+      </div>
+      <div class="seal seal--xl"><span>brokoby<small>brokered</small></span></div>
+      <div class="card stub deal-b">
+        <p class="small">Matched creators</p>
+        ${cs.map(c => `<div class="deal-row">${avatar(nameOf(c), c.avatar)}<div><strong>${esc(nameOf(c))}</strong>${pos(c.subscribers) ? `<span>${fmt(c.subscribers)} subscribers</span>` : ''}</div></div>`).join('')}
+      </div>
+    </div>
+  </div></section>`;
+}
+
+function sourceLine() {
+  const r = DATA.research, asOf = monthLabel(r.as_of);
+  return `As far as ${esc(r.source)} shows${asOf ? ` (checked ${esc(asOf)})` : ''}, alongside our own research`;
+}
+
+function chanList(list) {
+  return `<ul class="chan-list">${list.map(ch => {
+    const url = safeUrl(ch.url), nm = nameOf({ name: ch.name, url: ch.url });
+    const meta = [pos(ch.subscribers) ? `${fmt(ch.subscribers)} subscribers` : '', pos(ch.times_sponsored) ? `sponsored ${ch.times_sponsored}×` : ''].filter(Boolean).join(' — ');
+    return `<li class="chan">${avatar(nm, ch.logo)}<div>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener"><strong>${esc(nm)}</strong></a>` : `<strong>${esc(nm)}</strong>`}${meta ? `<span>${esc(meta)}</span>` : ''}</div></li>`;
+  }).join('')}</ul>`;
+}
+
+function researchTiles(r, extra = []) {
+  const ch = r.channels || [], t = [];
+  t.push([String(ch.length), ch.length === 1 ? 'channel sponsored' : 'channels sponsored']);
+  if (ch.length && ch.every(c => pos(c.subscribers))) t.push([fmt(ch.reduce((s, c) => s + c.subscribers, 0)), 'combined subscribers']);
+  const times = pos(r.total_sponsorships_found) ? r.total_sponsorships_found : (ch.length && ch.every(c => pos(c.times_sponsored)) ? ch.reduce((s, c) => s + c.times_sponsored, 0) : null);
+  if (times) t.push([String(times), 'sponsored videos tracked']);
+  if (r.featured_video && pos(r.featured_video.views)) t.push([fmt(r.featured_video.views), 'views on the video shown']);
+  t.push(...extra);
+  return `<div class="tiles">${t.map(([v, l]) => `<div class="tile"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>`;
+}
+
+function renderResearch() {
+  const r = DATA.research, b = DATA.brand;
+  if (r.mode === 'case_study') return renderCase(r, b);
+  const lapsed = r.mode === 'lapsed';
+  const fv = r.featured_video, vid = fv && videoEmbed(fv.url, fv.title);
+  const fvMeta = fv ? [fv.published ? `Published ${monthLabel(fv.published)}` : '', pos(fv.views) ? `${fmt(fv.views)} views` : ''].filter(Boolean).join(' — ') : '';
+  return `<section class="sec sec--soft" id="research"><div class="wrap">
+    <div class="sec-head">
+      <h2>${lapsed ? `Where ${esc(b.name)} has been on YouTube` : `${esc(b.name)} is already working with YouTube creators`}</h2>
+      <p class="lede">${sourceLine()}, these are the channels ${esc(b.name)} has sponsored${lapsed ? '' : ' recently'}.</p>
+    </div>
+    ${researchTiles(r)}
+    ${lapsed && r.last_sponsored_month ? `<div class="callout"><span class="seal seal--num" aria-hidden="true"><span>↺</span></span><p>The last integration we tracked was in ${esc(monthLabel(r.last_sponsored_month))}. That makes now a natural window to come back with fresh creators.</p></div>` : ''}
+    <div class="research-grid">
+      ${vid ? `<div><p class="video-label">${lapsed ? 'Most recent sponsored video we found' : 'A recent sponsored video'}</p>${vid}<div class="video-cap">${fv.title ? `<h3>${esc(fv.title)}</h3>` : ''}${fvMeta ? `<p class="small">${esc(fvMeta)}</p>` : ''}</div></div>` : ''}
+      <div${vid ? '' : ' style="grid-column:1/-1"'}><p class="video-label">Channels ${esc(b.name)} has sponsored</p>${chanList(r.channels || [])}</div>
+    </div>
+  </div></section>`;
+}
+
+function renderCase(r, b) {
+  const comp = r.competitor || {}, fv = r.featured_video, vid = fv && videoEmbed(fv.url, fv.title);
+  const est = r.estimated_revenue_usd;
+  const srcs = (r.estimate_sources || []).map(s => ({ label: s.label, url: safeUrl(s.url) })).filter(s => s.url);
+  const n = (r.channels || []).length;
+  return `<section class="sec sec--soft" id="research"><div class="wrap">
+    <div class="sec-head">
+      <h2>What ${n === 1 ? 'a creator' : NUMWORD[n].toLowerCase() + ' creators'} did for ${esc(comp.name)}</h2>
+      <p class="lede">${sourceLine()}, ${esc(comp.name)} has put sponsorship budget behind ${n === 1 ? 'this channel' : 'these ' + n + ' channels'}. Here is how that looks.</p>
+    </div>
+    ${researchTiles(r)}
+    ${est && pos(est.high) ? `<div class="card card--ink estimate">
+      <span class="pill pill--yolk">Estimate</span>
+      <p class="big">${money(est.low)} to ${money(est.high)}</p>
+      <p class="muted-on-ink">${r.outcome_summary ? esc(r.outcome_summary) : `Estimated revenue linked to ${esc(comp.name)}'s creator sponsorships.`}</p>
+      <details><summary>How we estimated this</summary>
+        <p>${esc(r.estimate_method || '')}</p>
+        ${srcs.length ? `<ul>${srcs.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label || s.url)}</a></li>`).join('')}</ul>` : ''}
+      </details></div>` : ''}
+    <div class="research-grid">
+      ${vid ? `<div><p class="video-label">A ${esc(comp.name)} sponsored video</p>${vid}<div class="video-cap">${fv.title ? `<h3>${esc(fv.title)}</h3>` : ''}</div></div>` : ''}
+      <div${vid ? '' : ' style="grid-column:1/-1"'}><p class="video-label">Channels ${esc(comp.name)} sponsored</p>${chanList(r.channels || [])}</div>
+    </div>
+    <p style="margin-top:2rem;max-width:60ch" class="lede">The same approach is open to ${esc(b.name)}: pair a creator whose audience already matches your buyer with a format they know how to sell.</p>
+  </div></section>`;
+}
+
+function bars(items, key) {
+  const list = (items || []).filter(i => pos(i.pct)).slice(0, 5);
+  if (!list.length) return '';
+  return `<div><h4>${key}</h4><div class="bars">${list.map(i => `<div class="bar"><span>${esc(i.name || i.label)}</span><i style="--w:${Math.min(100, i.pct)}%"></i><b>${pct(i.pct, 0)}</b></div>`).join('')}</div></div>`;
+}
+
+function projInner(c) {
+  const rows = project(c), d = c._d; if (!rows) return '';
+  const prod = DATA.brand.product || DATA.brand.name;
+  const line = (label, key, f) => `<tr><th scope="row">${label}</th>${rows.map((r, i) => `<td class="${i === 1 ? 'mid' : ''}">${f(r[key])}</td>`).join('')}</tr>`;
+  const hasRev = rows[1].rev != null;
+  return `<div class="proj-head"><h3>Projected results for ${esc(prod)}</h3><p class="small muted-on-ink">Built from the median of their last ${d.n} videos</p></div>
+    <div class="tbl-wrap"><table class="proj-t">
+      <thead><tr><th></th><th scope="col">Cautious</th><th scope="col" class="mid">Expected</th><th scope="col">Strong</th></tr></thead>
+      <tbody>
+        ${line('Views', 'views', fmt)}
+        ${line('Link clicks', 'clicks', fmt)}
+        ${line('New ' + esc(word()), 'cust', v => '≈' + fmt(v))}
+        ${hasRev ? line('Revenue', 'rev', money) : ''}
+      </tbody></table></div>
+    <p class="proj-foot">${hasRev ? '' : `Add a value per customer in the calculator below to see revenue. `}These are planning estimates, not guarantees. Assumptions are listed further down.</p>`;
+}
+
+function renderCreator(c, i) {
+  const b = DATA.brand, prod = b.product || b.name, d = c._d, url = safeUrl(c.channel_url), kit = safeUrl(c.media_kit_url);
+  const tiles = [];
+  if (pos(d.med)) tiles.push([fmt(d.med), `median views, last ${d.n} videos`]);
+  if (pos(d.eng)) tiles.push([d.eng.toFixed(1) + '%', 'engagement (likes + comments per view)']);
+  if (pos(c.uploads_per_month)) tiles.push([String(c.uploads_per_month), 'uploads per month']);
+  const aud = c.audience || {};
+  const audHtml = [bars(aud.top_countries, 'Where viewers are'), bars(aud.age_groups, 'Age')].filter(Boolean).join('');
+  const bi = c.best_integration, biVid = bi && videoEmbed(bi.video_url, bi.title);
+  return `<section class="sec creator ${i % 2 ? 'sec--soft' : ''}" id="creator-${i + 1}"><div class="wrap">
+    <div class="c-head">
+      ${avatar(nameOf(c), c.avatar)}
+      <div class="c-id">
+        <div class="row"><span class="pill pill--yolk">Creator ${i + 1}</span>${c.category ? `<span class="pill">${esc(c.category)}</span>` : ''}${c.formats && c.formats[0] ? `<span class="pill">${esc(c.formats[0])}</span>` : ''}</div>
+        <h2>${esc(nameOf(c))}</h2>
+        ${url ? `<a class="link" href="${esc(url)}" target="_blank" rel="noopener" style="width:fit-content">${esc(handleFrom(c.channel_url) || 'View channel')} on YouTube</a>` : ''}
+      </div>
+      ${pos(c.subscribers) ? `<div class="c-subs"><b>${fmt(c.subscribers)}</b><span class="small">subscribers</span></div>` : ''}
+    </div>
+    <div class="c-grid">
+      <div class="c-col">
+        ${c.fit_points && c.fit_points.length ? `<div><h3>Why they fit ${esc(prod)}</h3><ul class="fit">${c.fit_points.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>` : ''}
+        ${biVid ? `<div><p class="video-label">${bi.brand ? `Past integration: ${esc(bi.brand)}` : 'A past integration'}</p>${biVid}${bi.note ? `<p class="small" style="margin-top:.9rem">${esc(bi.note)}</p>` : ''}</div>` : ''}
+        ${kit ? `<div><a class="btn btn--paper" href="${esc(kit)}" target="_blank" rel="noopener" data-track="media_kit" data-who="${esc(nameOf(c))}">Open media kit</a></div>` : ''}
+      </div>
+      <div class="c-col">
+        ${tiles.length ? `<div class="tiles">${tiles.map(([v, l]) => `<div class="tile"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>` : ''}
+        ${audHtml ? `<div class="aud-cols">${audHtml}</div>` : ''}
+      </div>
+    </div>
+    <div class="card card--ink proj" data-proj="${i}">${projInner(c)}</div>
+  </div></section>`;
+}
+
+function cmpRows() {
+  const cs = DATA.creators, mid = c => (project(c) || [])[1];
+  const rows = [
+    ['Subscribers', c => pos(c.subscribers) ? fmt(c.subscribers) : ''],
+    ['Median views', c => pos(c._d.med) ? fmt(c._d.med) : ''],
+    ['Engagement', c => pos(c._d.eng) ? c._d.eng.toFixed(1) + '%' : ''],
+    ...(A.views_multiplier.mid !== 1 ? [['Expected views', c => mid(c) ? fmt(mid(c).views) : '']] : []),
+    ['Expected link clicks', c => mid(c) ? fmt(mid(c).clicks) : ''],
+    ['Expected new ' + word(), c => mid(c) ? '≈' + fmt(mid(c).cust) : ''],
+    ['Expected revenue', c => mid(c) && mid(c).rev != null ? money(mid(c).rev) : '']
+  ];
+  return rows.filter(([, f]) => cs.some(c => f(c))).map(([l, f]) => `<tr><th scope="row">${esc(l)}</th>${cs.map(c => `<td>${f(c) || '—'}</td>`).join('')}</tr>`).join('');
+}
+function renderCompare() {
+  const cs = DATA.creators; if (cs.length < 2) return '';
+  return `<section class="sec" id="compare"><div class="wrap">
+    <div class="sec-head"><h2>Side by side</h2><p class="lede">The same numbers for each creator, so you can see the trade-offs at a glance.</p></div>
+    <div class="card cmp"><table class="cmp-t"><thead><tr><th></th>${cs.map(c => `<th scope="col"><span class="cmp-who">${avatar(nameOf(c), c.avatar)}${esc(nameOf(c))}</span></th>`).join('')}</tr></thead><tbody id="cmp-body">${cmpRows()}</tbody></table></div>
+  </div></section>`;
+}
+
+function calcOut() {
+  const w = word();
+  return DATA.creators.map(c => {
+    const p = project(c); if (!p) return '';
+    const m = p[1];
+    return `<div class="calc-line"><strong>${esc(nameOf(c))}</strong><span>≈${fmt(m.cust)} ${esc(w)}${m.rev != null ? ` · ${money(m.rev)}` : ''}</span></div>`;
+  }).join('');
+}
+function renderCalc() {
+  const b = DATA.brand, m = A.conv_pct.mid, w = word();
+  const f = k => `${pct(A.views_multiplier[k] * 100, 0)} of median views, ${pct(A.ctr_pct[k], 1)} click the link, ${pct(A.conv_pct[k], 1)} of clicks become ${w}`;
+  return `<section class="sec sec--soft" id="calc"><div class="wrap">
+    <div class="sec-head"><h2>Try your own numbers</h2><p class="lede">You know your conversion rate and what a ${esc(w.replace(/s$/, ''))} is worth better than we do. Change the two numbers and every projection on this page updates.</p></div>
+    <div class="calc-grid">
+      <div class="card">
+        <div class="calc-inputs">
+          <div class="field"><label for="in-conv">Click to ${esc(w.replace(/s$/, ''))} rate (%)</label><input id="in-conv" type="number" inputmode="decimal" min="0.1" max="50" step="0.1" value="${m}"></div>
+          <div class="field"><label for="in-val">Value of one ${esc(w.replace(/s$/, ''))} ($)</label><input id="in-val" type="number" inputmode="decimal" min="1" step="1" placeholder="e.g. 120" value="${pos(ST.value) ? ST.value : ''}"></div>
+        </div>
+        <div style="margin-top:1.25rem"><button type="button" class="btn btn--sm btn--paper" id="calc-reset">Reset to our defaults</button></div>
+        <div class="assump">
+          <p><strong>Our planning assumptions.</strong> Cautious: ${esc(f('low'))}. Expected: ${esc(f('mid'))}. Strong: ${esc(f('high'))}.</p>
+          ${b.customer_value_basis ? `<p><strong>Value per ${esc(w.replace(/s$/, ''))}.</strong> ${esc(b.customer_value_basis)}</p>` : ''}
+          <p>These are our own planning figures, not benchmarks from your data. Replace them with your own above.</p>
+        </div>
+      </div>
+      <div><p class="video-label">Expected result per creator</p><div class="calc-out" id="calc-out" aria-live="polite">${calcOut()}</div></div>
+    </div>
+  </div></section>`;
+}
+
+function renderHow() {
+  return `<section class="sec" id="how"><div class="wrap how-grid">
+    <div>
+      <div class="sec-head"><h2>How it works from here</h2><p class="lede">You choose. We handle everything between the yes and the live video.</p></div>
+      <ol class="steps">
+        <li><span class="seal seal--num" aria-hidden="true"><span>1</span></span><div><h3>Pick one creator or both</h3><p>Tell us which channel fits best, and what you want viewers to do.</p></div></li>
+        <li><span class="seal seal--num" aria-hidden="true"><span>2</span></span><div><h3>We run the deal</h3><p>Brief, negotiation, contract, timeline and approvals. You review the draft and give the go-ahead.</p></div></li>
+        <li><span class="seal seal--num" aria-hidden="true"><span>3</span></span><div><h3>The video goes live, then you get a report</h3><p>Views, clicks and what worked, so the next campaign starts from data.</p></div></li>
+      </ol>
+    </div>
+    <div class="card" style="background:var(--yolk)">
+      <h3>Commission-only</h3>
+      <p style="margin-top:.75rem">No retainers, no upfront fees. Brokoby is paid only when a campaign is confirmed and live, so our incentive is the same as yours.</p>
+    </div>
+  </div></section>`;
+}
+
+function renderBook() {
+  const b = DATA.brand, names = DATA.creators.map(nameOf).join(' and ');
+  const subj = encodeURIComponent(`Re: ${b.name} x Brokoby`);
+  const yes = encodeURIComponent(`Yes, please send details on ${names}.\n\nThanks`);
+  return `<section class="sec sec--yolk" id="book"><div class="wrap">
+    <div class="sec-head" style="margin-inline:auto;text-align:center;justify-items:center">
+      <h2>Want to run one of these?</h2>
+      <p class="lede" style="color:rgba(25,25,25,.75)">Book 30 minutes and we'll go through both creators, your goals and a rough timeline. Prefer email? Just reply yes and we'll send everything over.</p>
+    </div>
+    <div class="book-actions">
+      <a class="btn btn--ink" href="mailto:${CONFIG.EMAIL}?subject=${subj}&body=${yes}" data-track="reply_yes">Reply yes by email</a>
+      <a class="btn btn--paper" href="mailto:${CONFIG.EMAIL}?subject=${subj}" data-track="email">Email ${CONFIG.EMAIL}</a>
+    </div>
+    <div class="card book-card"><div id="cal-inline"></div></div>
+    <p class="print-only">Book a call: ${CONFIG.CAL_URL} · ${CONFIG.EMAIL}</p>
+  </div></section>`;
+}
+
+function renderFooter() {
+  return `<footer class="foot"><div class="wrap foot-in">
+    <a class="brandmark" href="https://brokoby.com"><span class="seal" aria-hidden="true"><span>B</span></span><b>brokoby</b></a>
+    <p>Projections on this page are planning estimates built from public channel data and the assumptions shown. They are not guarantees. Sponsorship data comes from third-party tools and our own research and may be incomplete. Brokoby is an independent agency with no affiliation to the brands or channels named. Names and logos belong to their owners.</p>
+    <p>Questions? <a href="mailto:${CONFIG.EMAIL}">${CONFIG.EMAIL}</a></p>
+  </div></footer>`;
+}
+
+/* ---- Behaviour ------------------------------------------------------ */
+function wireVideos(root) {
+  root.addEventListener('click', e => {
+    const btn = e.target.closest('.video button'); if (!btn) return;
+    const box = btn.parentNode, id = box.dataset.vid;
+    box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="YouTube video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  });
+}
+
+function refreshNumbers() {
+  $$('[data-proj]').forEach(el => { el.innerHTML = projInner(DATA.creators[+el.dataset.proj]); });
+  const cb = $('#cmp-body'); if (cb) cb.innerHTML = cmpRows();
+  const co = $('#calc-out'); if (co) co.innerHTML = calcOut();
+}
+function wireCalc() {
+  const conv = $('#in-conv'), val = $('#in-val'); if (!conv || !val) return;
+  const upd = () => {
+    const c = parseFloat(conv.value), v = parseFloat(val.value);
+    ST.conv = (isNum(c) && c > 0) ? Math.min(c, 50) : null;
+    ST.value = (isNum(v) && v > 0) ? v : null;
+    refreshNumbers();
+  };
+  conv.addEventListener('input', upd); val.addEventListener('input', upd);
+  $('#calc-reset').addEventListener('click', () => {
+    conv.value = A.conv_pct.mid; val.value = pos(DATA.brand.customer_value_usd) ? DATA.brand.customer_value_usd : '';
+    upd();
+  });
+}
+
+let calLoaded = false;
+function loadCal() {
+  if (calLoaded) return; calLoaded = true;
+  (function (C, A_, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A_; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
+  Cal('init', '30min', { origin: 'https://app.cal.com' });
+  Cal.ns['30min']('inline', { elementOrSelector: '#cal-inline', config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', notes: `From the ${DATA.brand.name} page` }, calLink: CONFIG.CAL_LINK });
+  Cal.ns['30min']('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+}
+
+function wireObservers() {
+  const sticky = $('#sticky'), hero = $('#top'), book = $('#book');
+  if ('IntersectionObserver' in window) {
+    let heroOut = false, bookIn = false;
+    const set = () => { const on = heroOut && !bookIn; sticky.classList.toggle('on', on); sticky.setAttribute('aria-hidden', String(!on)); $('.btn', sticky).tabIndex = on ? 0 : -1; };
+    new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting && e.boundingClientRect.top < 0; set(); }).observe(hero);
+    new IntersectionObserver(([e]) => { bookIn = e.isIntersecting; set(); }).observe(book);
+    new IntersectionObserver((en, o) => { if (en[0].isIntersecting) { loadCal(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(book);
+  } else loadCal();
+}
+
+/* ---- Open / click notifications (no email pixel, no link wrapping) --- */
+const OWNER = (() => {
+  try {
+    const p = new URLSearchParams(location.search).get('owner');
+    if (p === '1') localStorage.setItem('bk_owner', '1');
+    if (p === '0') localStorage.removeItem('bk_owner');
+    return localStorage.getItem('bk_owner') === '1';
+  } catch { return false; }
+})();
+const BOTISH = navigator.webdriver || /bot|crawl|spider|scanner|headless|facebookexternalhit|slackbot|whatsapp|safelinks|proofpoint|mimecast|barracuda/i.test(navigator.userAgent);
+const sent = new Set();
+function send(event, extra) {
+  if (OWNER || BOTISH || (DATA && DATA.demo) || sent.has(event + (extra && extra.who || ''))) return;
+  sent.add(event + (extra && extra.who || ''));
+  const body = JSON.stringify({ slug: SLUG, event, ...extra });
+  try {
+    if (!(navigator.sendBeacon && navigator.sendBeacon(CONFIG.NOTIFY_ENDPOINT, new Blob([body], { type: 'application/json' })))) {
+      fetch(CONFIG.NOTIFY_ENDPOINT, { method: 'POST', body, keepalive: true, headers: { 'Content-Type': 'application/json' } });
+    }
+  } catch { /* never break the page for analytics */ }
+}
+function armViewBeacon() {
+  if (OWNER || BOTISH || DATA.demo) return;
+  const key = 'bk_seen_' + SLUG;
+  try { if (Date.now() - (+localStorage.getItem(key) || 0) < 6 * 3600e3) return; } catch { /* ignore */ }
+  const t0 = performance.now(), evs = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'];
+  let done = false;
+  const fire = () => { if (done) return; done = true; try { localStorage.setItem(key, String(Date.now())); } catch { /* ignore */ } send('view'); };
+  const onHuman = e => {
+    if (!e.isTrusted) return;
+    evs.forEach(n => removeEventListener(n, onHuman, true));
+    setTimeout(() => { document.visibilityState === 'visible' ? fire() : document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && fire(), { once: true }); }, Math.max(0, 5000 - (performance.now() - t0)));
+  };
+  evs.forEach(n => addEventListener(n, onHuman, { capture: true, passive: true }));
+}
+
+/* ---- Boot ----------------------------------------------------------- */
+function showError() {
+  $('#app').innerHTML = `<div class="state"><div class="card"><h2>This page isn't available</h2><p style="margin-top:.75rem">The link may be incomplete. Email <a href="mailto:${CONFIG.EMAIL}">${CONFIG.EMAIL}</a> and we'll send it again.</p></div></div>`;
+}
+
+async function boot() {
+  SLUG = getSlug(); if (!SLUG) return showError();
+  try {
+    const res = await fetch(CONFIG.DATA_PATH + SLUG + '.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(res.status);
+    DATA = await res.json();
+    if (!DATA.brand || !DATA.brand.name || !DATA.research || !Array.isArray(DATA.creators) || !DATA.creators.length) throw new Error('shape');
+  } catch (e) { console.error('[brokoby] could not load page data', e); return showError(); }
+
+  A = {}; for (const k of Object.keys(CONFIG.DEFAULTS)) A[k] = { ...CONFIG.DEFAULTS[k], ...((DATA.assumptions || {})[k] || {}) };
+  ST = { conv: null, value: pos(DATA.brand.customer_value_usd) ? DATA.brand.customer_value_usd : null };
+  DATA.creators.forEach(c => { c._d = derive(c); });
+
+  document.title = `${DATA.creators.length === 1 ? 'A creator' : NUMWORD[DATA.creators.length] + ' creators'} for ${DATA.brand.name} — Brokoby`;
+  const tag = $('#for-tag'); tag.textContent = `Prepared for ${DATA.brand.name}`; tag.hidden = false;
+
+  $('#app').innerHTML =
+    (DATA.demo ? `<div class="demo-ribbon">DEMO DATA — sample content, not a real brand or real numbers</div>` : '') +
+    renderHero() + renderResearch() + DATA.creators.map(renderCreator).join('') + renderCompare() + renderCalc() + renderHow() + renderBook() + renderFooter();
+
+  wireVideos($('#app')); wireCalc(); wireObservers(); armViewBeacon();
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-track]'); if (!t) return;
+    send('cta_' + t.dataset.track, t.dataset.who ? { who: t.dataset.who } : undefined);
+  });
+  if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+}
+boot();
+})();
+</script>
+</body>
+</html>

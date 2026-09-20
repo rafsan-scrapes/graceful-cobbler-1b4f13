@@ -1,6 +1,10 @@
 [build]
   publish = "."
 
+# ---------------------------------------------------------------
+# YOUR EXISTING RULES (unchanged)
+# ---------------------------------------------------------------
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -22,3 +26,36 @@
   for = "/js/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# ---------------------------------------------------------------
+# NEW: BRAND PAGES
+# ---------------------------------------------------------------
+
+# 1. Any address like brokoby.com/brand/acme-x7k2 shows brand.html.
+#    The address in the browser stays the same (status 200 = no redirect).
+[[redirects]]
+  from = "/brand/*"
+  to = "/brand.html"
+  status = 200
+
+# 2. Tell Google and other search engines not to list the brand pages.
+#    no-store means browsers never keep an old copy, so edits show immediately.
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-store"
+
+# 3. Same protection for the template file itself.
+[[headers]]
+  for = "/brand.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+# 4. Same for the data files, so search engines don't list them
+#    and updated numbers always show straight away.
+[[headers]]
+  for = "/data/brand/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-store"

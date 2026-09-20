@@ -1,0 +1,232 @@
+{
+  "slug": "demo-case",
+  "demo": true,
+  "brand": {
+    "name": "Acme Notes",
+    "product": "Acme Notes",
+    "category": "AI note-taking app",
+    "website": "https://example.com",
+    "customer_value_usd": 120,
+    "customer_value_basis": "Sample: $10 a month Pro plan over a 12-month average customer life."
+  },
+  "research": {
+    "mode": "case_study",
+    "source": "SponsorRadar",
+    "as_of": "2026-09",
+    "competitor": {
+      "name": "Rival Notes",
+      "website": "https://example.com"
+    },
+    "channels": [
+      {
+        "url": "https://www.youtube.com/@indydevdan",
+        "times_sponsored": 3
+      },
+      {
+        "url": "https://www.youtube.com/@theryanthomas",
+        "times_sponsored": 2
+      }
+    ],
+    "featured_video": {
+      "url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+      "title": "Sample: a video sponsored by the competitor"
+    },
+    "estimated_revenue_usd": {
+      "low": 40000,
+      "high": 90000
+    },
+    "estimate_method": "Sample method: combined median views of the two channels multiplied by a 0.8% link click rate, a 2.5% click-to-customer rate and a $120 customer value. Replace with the real method for each case.",
+    "estimate_sources": [
+      {
+        "label": "SponsorRadar listing (sample)",
+        "url": "https://example.com/source"
+      }
+    ],
+    "outcome_summary": "Sample: estimated revenue linked to two creator sponsorships over the period tracked."
+  },
+  "creators": [
+    {
+      "name": "Demo Creator One",
+      "channel_url": "https://www.youtube.com/@demo-creator-one",
+      "category": "AI tools and productivity",
+      "subscribers": 212000,
+      "recent_video_views": [
+        48210,
+        39800,
+        52100,
+        61400,
+        35200,
+        44900,
+        58700,
+        41300,
+        37600,
+        50200,
+        46800,
+        43100
+      ],
+      "uploads_per_month": 6,
+      "formats": [
+        "60–90s mid-roll integration"
+      ],
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 41
+          },
+          {
+            "name": "India",
+            "pct": 12
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 8
+          },
+          {
+            "name": "Canada",
+            "pct": 6
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "18–24",
+            "pct": 22
+          },
+          {
+            "label": "25–34",
+            "pct": 39
+          },
+          {
+            "label": "35–44",
+            "pct": 24
+          },
+          {
+            "label": "45+",
+            "pct": 15
+          }
+        ]
+      },
+      "media_kit_url": "https://example.com/demo-creator-one-media-kit.pdf",
+      "best_integration": {
+        "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+        "brand": "A note-taking app",
+        "title": "Sample integration",
+        "note": "Sample note: shows how this creator demos a software product on screen."
+      },
+      "fit_points": [
+        "Sample: audience is mostly 25–34 professionals, the core buyer for a note-taking app.",
+        "Sample: reviews software with screen recordings, which suits this kind of product.",
+        "Sample: consistent uploads, so a sponsored video lands in front of an active audience."
+      ],
+      "recent_video_likes": [
+        2085,
+        1777,
+        2400,
+        2915,
+        1721,
+        1941,
+        2621,
+        1902,
+        1785,
+        2454,
+        2024,
+        1924
+      ],
+      "recent_video_comments": [
+        182,
+        159,
+        219,
+        271,
+        133,
+        179,
+        247,
+        182,
+        142,
+        200,
+        197,
+        190
+      ]
+    },
+    {
+      "name": "Demo Creator Two",
+      "channel_url": "https://www.youtube.com/@demo-creator-two",
+      "category": "Tech reviews",
+      "subscribers": 468000,
+      "recent_video_views": [
+        121000,
+        98500,
+        143200,
+        87400,
+        110900,
+        132600,
+        91800,
+        104300,
+        118700,
+        96200,
+        127500
+      ],
+      "uploads_per_month": 4,
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 52
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 11
+          },
+          {
+            "name": "Canada",
+            "pct": 7
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "18–24",
+            "pct": 31
+          },
+          {
+            "label": "25–34",
+            "pct": 36
+          },
+          {
+            "label": "35–44",
+            "pct": 20
+          }
+        ]
+      },
+      "media_kit_url": "https://example.com/demo-creator-two-media-kit.pdf",
+      "fit_points": [
+        "Sample: larger reach for a brand that wants volume, with a majority US audience.",
+        "Sample: long-form reviews give room for a full product walkthrough."
+      ],
+      "recent_video_likes": [
+        4787,
+        4024,
+        6034,
+        3796,
+        4959,
+        5246,
+        3750,
+        4395,
+        5155,
+        4302,
+        5044
+      ],
+      "recent_video_comments": [
+        338,
+        290,
+        444,
+        284,
+        309,
+        391,
+        285,
+        339,
+        331,
+        283,
+        395
+      ]
+    }
+  ]
+}
