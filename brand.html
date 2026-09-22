@@ -622,11 +622,11 @@ function bars(items, key) {
 function projInner(c) {
   const rows = project(c), d = c._d; if (!rows) return '';
   const prod = DATA.brand.product || DATA.brand.name;
-  const line = (label, key, f) => `<tr><th scope="row">${label}</th>${rows.map((r, i) => `<td class="${i === 1 ? 'mid' : ''}">${f(r[key])}</td>`).join('')}</tr>`;
+  const line = (label, key, f) => `<tr><th scope="row">${label}</th>${rows.map((r, i) => `<td class="${i === 2 ? 'mid' : ''}">${f(r[key])}</td>`).join('')}</tr>`;
   const hasRev = rows[1].rev != null;
   return `<div class="proj-head"><h3>Projected results for ${esc(prod)}</h3><p class="small muted-on-ink">Built from the median of their last ${d.n} videos</p></div>
     <div class="tbl-wrap"><table class="proj-t">
-      <thead><tr><th></th><th scope="col">Cautious</th><th scope="col" class="mid">Expected</th><th scope="col">Strong</th></tr></thead>
+      <thead><tr><th></th><th scope="col">Cautious</th><th scope="col">Average</th><th scope="col" class="mid">Strong</th></tr></thead>
       <tbody>
         ${line('Views', 'views', fmt)}
         ${line('Link clicks', 'clicks', fmt)}
@@ -696,10 +696,10 @@ function cmpRows() {
     ['Subscribers', c => pos(c.subscribers) ? fmt(c.subscribers) : ''],
     ['Median views', c => pos(c._d.med) ? fmt(c._d.med) : ''],
     ['Engagement', c => pos(c._d.eng) ? c._d.eng.toFixed(1) + '%' : ''],
-    ...(A.views_multiplier.mid !== 1 ? [['Expected views', c => mid(c) ? fmt(mid(c).views) : '']] : []),
-    ['Expected link clicks', c => mid(c) ? fmt(mid(c).clicks) : ''],
-    ['Expected new ' + word(), c => mid(c) ? '≈' + fmt(mid(c).cust) : ''],
-    ['Expected revenue', c => mid(c) && mid(c).rev != null ? money(mid(c).rev) : '']
+    ...(A.views_multiplier.mid !== 1 ? [['Average views', c => mid(c) ? fmt(mid(c).views) : '']] : []),
+    ['Average link clicks', c => mid(c) ? fmt(mid(c).clicks) : ''],
+    ['Average new ' + word(), c => mid(c) ? '≈' + fmt(mid(c).cust) : ''],
+    ['Average revenue', c => mid(c) && mid(c).rev != null ? money(mid(c).rev) : '']
   ];
   return rows.filter(([, f]) => cs.some(c => f(c))).map(([l, f]) => `<tr><th scope="row">${esc(l)}</th>${cs.map(c => `<td>${f(c) || '—'}</td>`).join('')}</tr>`).join('');
 }
@@ -732,12 +732,12 @@ function renderCalc() {
         </div>
         <div style="margin-top:1.25rem"><button type="button" class="btn btn--sm btn--paper" id="calc-reset">Reset to our defaults</button></div>
         <div class="assump">
-          <p><strong>Our planning assumptions.</strong> Cautious: ${esc(f('low'))}. Expected: ${esc(f('mid'))}. Strong: ${esc(f('high'))}.</p>
+          <p><strong>Our planning assumptions.</strong> Cautious: ${esc(f('low'))}. Average: ${esc(f('mid'))}. Strong: ${esc(f('high'))}.</p>
           ${b.customer_value_basis ? `<p><strong>Value per ${esc(w.replace(/s$/, ''))}.</strong> ${esc(b.customer_value_basis)}</p>` : ''}
           <p>These are our own planning figures, not benchmarks from your data. Replace them with your own above.</p>
         </div>
       </div>
-      <div><p class="video-label">Expected result per creator</p><div class="calc-out" id="calc-out" aria-live="polite">${calcOut()}</div></div>
+      <div><p class="video-label">Average result per creator</p><div class="calc-out" id="calc-out" aria-live="polite">${calcOut()}</div></div>
     </div>
   </div></section>`;
 }
