@@ -1,0 +1,320 @@
+{
+  "slug": "runpod-f3d9",
+  "brand": {
+    "name": "Runpod",
+    "category": "GPU cloud / AI compute hosting",
+    "logo": "/assets/brands/runpod.jpg",
+    "website": "https://www.runpod.io/",
+    "contact_first_name": "Zachary",
+    "conversion_word": "paying GPU/AI compute users",
+    "customer_value_usd": 2376.15,
+    "customer_value_basis": "$2.17 per GPU-hour for 3 hours a day over 365 days, about $2,376.15 a year."
+  },
+  "research": {
+    "mode": "lapsed",
+    "source": "Brokoby research",
+    "as_of": "2026-09",
+    "channels": [
+      {
+        "url": "https://www.youtube.com/@Daniel-Dann",
+        "name": "Daniel",
+        "logo": "/assets/brands/daniel.jpg",
+        "subscribers": 616000,
+        "times_sponsored": 1
+      },
+      {
+        "url": "https://www.youtube.com/@bycloudAI",
+        "name": "bycloud",
+        "logo": "/assets/brands/bycloud.jpg",
+        "subscribers": 233000,
+        "times_sponsored": 1
+      },
+      {
+        "url": "https://www.youtube.com/@NeuralNine",
+        "name": "NeuralNine",
+        "logo": "/assets/brands/ne_9.jpg",
+        "subscribers": 485000,
+        "times_sponsored": 1
+      },
+      {
+        "url": "https://www.youtube.com/@WelchLabs",
+        "name": "Welch Labs",
+        "logo": "/assets/brands/welch.jpg",
+        "subscribers": 907000,
+        "times_sponsored": 1
+      }
+    ],
+    "featured_video": {
+      "url": "https://youtube.com/watch?v=A4dAlWyVQXY",
+      "title": "RunPod Review - (2026) Is This The Simplest Way to Run AI in the Cloud",
+      "views": 53000,
+      "published": "2026-06"
+    },
+    "total_channels_sponsored": 5,
+    "total_sponsorships_found": 5,
+    "combined_subscribers_estimate": 2400000,
+    "last_sponsored_month": "2026-06"
+  },
+  "creators": [
+    {
+      "name": "AI LABS",
+      "channel_url": "https://www.youtube.com/channel/UCelfWQr9sXVMTvBzviPGlFw",
+      "avatar": "/assets/brands/ai-labs.jpg",
+      "category": "AI / Coding & Developer Tools",
+      "subscribers": 165000,
+      "recent_video_views": [
+        27100,
+        18556,
+        55863,
+        63747,
+        208512,
+        34559,
+        44149,
+        37968,
+        114276,
+        36846,
+        227258,
+        105543,
+        28410,
+        24771,
+        54784
+      ],
+      "recent_video_likes": [
+        590,
+        216,
+        996,
+        510,
+        3063,
+        314,
+        526,
+        492,
+        1926,
+        511,
+        4796,
+        2450,
+        645,
+        702,
+        1009
+      ],
+      "recent_video_comments": [
+        11,
+        11,
+        14,
+        44,
+        138,
+        9,
+        19,
+        15,
+        30,
+        17,
+        77,
+        107,
+        20,
+        30,
+        21
+      ],
+      "uploads_per_month": 11,
+      "formats": [
+        "60-Second Integration, Natural Drop In"
+      ],
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 21.5
+          },
+          {
+            "name": "India",
+            "pct": 10.1
+          },
+          {
+            "name": "Germany",
+            "pct": 4.9
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 3.7
+          },
+          {
+            "name": "Brazil",
+            "pct": 3.6
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "18–24",
+            "pct": 9.1
+          },
+          {
+            "label": "25–34",
+            "pct": 33.5
+          },
+          {
+            "label": "35–44",
+            "pct": 31.9
+          },
+          {
+            "label": "45–54",
+            "pct": 17.7
+          },
+          {
+            "label": "55–64",
+            "pct": 5.8
+          }
+        ]
+      },
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=p565AqELA8M",
+          "brand": "Lumalabs",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=90pwPVrydHg",
+          "brand": "Respan",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=PLyRe6Zk--8",
+          "brand": "Hedra",
+          "published": "2026-08"
+        }
+      ],
+      "fit_points": [
+        "Audience is 25–44 working-age developers, with the US the top country at 21.5%.",
+        "Channel covers AI coding and developer tools, so GPU compute fits the workflow shown.",
+        "Recent integrations with AI tool brands such as Lumalabs show paid tools land here."
+      ]
+    },
+    {
+      "name": "Easy Riders",
+      "channel_url": "https://www.youtube.com/channel/UCGwns8iFnP0WbTK9e0PUxIg",
+      "category": "AI tools and productivity",
+      "subscribers": 26900,
+      "recent_video_views": [
+        109724,
+        129950,
+        102715,
+        31800,
+        73732,
+        260813,
+        53323,
+        119691,
+        31424,
+        76405,
+        29439,
+        34717,
+        4093,
+        1442,
+        42086
+      ],
+      "recent_video_likes": [
+        1511,
+        1624,
+        1208,
+        595,
+        915,
+        3936,
+        1063,
+        2935,
+        867,
+        2194,
+        783,
+        1224,
+        156,
+        20,
+        1109
+      ],
+      "recent_video_comments": [
+        282,
+        518,
+        173,
+        108,
+        123,
+        460,
+        269,
+        583,
+        162,
+        337,
+        215,
+        171,
+        41,
+        0,
+        197
+      ],
+      "uploads_per_month": 3.5,
+      "formats": [
+        "60–90s ad segment, Product integration",
+        "Dedicated video"
+      ],
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 25.2
+          },
+          {
+            "name": "Germany",
+            "pct": 8
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 7.1
+          },
+          {
+            "name": "Canada",
+            "pct": 4.3
+          },
+          {
+            "name": "India",
+            "pct": 3.8
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "13–17",
+            "pct": 6
+          },
+          {
+            "label": "18–24",
+            "pct": 22
+          },
+          {
+            "label": "25–34",
+            "pct": 42
+          },
+          {
+            "label": "35–44",
+            "pct": 17
+          },
+          {
+            "label": "45–54",
+            "pct": 8
+          }
+        ]
+      },
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=weicPw4Ychk",
+          "brand": "DataCamp",
+          "published": "2026-05"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=TCMMU7UfM7w",
+          "brand": "Abacus AI",
+          "published": "2026-08"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=czU5ylX6_AM",
+          "brand": "MiniMax",
+          "published": "2026-08"
+        }
+      ],
+      "fit_points": [
+        "Audience is 18–44 developers and researchers testing frontier AI models hands-on.",
+        "Stress-tests of hard research tasks create a natural slot to show GPU compute.",
+        "Recent integrations with Abacus AI and MiniMax show AI products fit this feed."
+      ]
+    }
+  ]
+}

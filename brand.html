@@ -182,6 +182,7 @@ p { margin: 0; }
 .chan strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1rem; line-height: 1.2; }
 .chan span { font-size: .85rem; color: var(--inksoft); }
 .chan .ava { --s: 46px; }
+.chan-more { margin-top: 1rem; font-family: var(--font-display); font-weight: 700; font-size: .95rem; }
 .callout { display: flex; gap: 1rem; align-items: center; margin-top: 1.75rem; padding: 1.1rem 1.35rem; background: var(--yolk); border: 3px solid var(--ink); border-radius: 18px; box-shadow: var(--shadow-sm); }
 .callout p { font-weight: 600; }
 .estimate { margin-top: 2rem; }
@@ -529,12 +530,33 @@ function chanList(list) {
   }).join('')}</ul>`;
 }
 
+/* What we can honestly say about a brand's sponsorships. The channel list may be only a
+   handful of a much bigger set, so totals come from the totals fields and a partial list
+   is never added up (that would understate the numbers). */
+function researchFacts(r) {
+  const ch = r.channels || [];
+  const total = pos(r.total_channels_sponsored) ? Math.max(r.total_channels_sponsored, ch.length) : null;
+  const partial = total != null && total > ch.length;
+  const sum = k => ch.reduce((s, c) => s + c[k], 0);
+  let subs = null, subsPlus = false, times = null;
+  if (pos(r.combined_subscribers_estimate)) { subs = r.combined_subscribers_estimate; subsPlus = true; }
+  else if (!partial && ch.length && ch.every(c => pos(c.subscribers))) subs = sum('subscribers');
+  if (pos(r.total_sponsorships_found)) times = r.total_sponsorships_found;
+  else if (!partial && ch.length && ch.every(c => pos(c.times_sponsored))) times = sum('times_sponsored');
+  return { ch, count: total != null ? total : ch.length, partial, more: partial ? total - ch.length : 0, subs, subsPlus, times };
+}
+
+function chanBlock(name, r, verb) {
+  const f = researchFacts(r);
+  const label = f.partial ? `A few of the ${f.count} channels ${name} ${verb}` : `Channels ${name} ${verb}`;
+  return `<p class="video-label">${esc(label)}</p>${chanList(f.ch)}${f.partial ? `<p class="chan-more">and ${f.more} more channel${f.more === 1 ? '' : 's'}</p>` : ''}`;
+}
+
 function researchTiles(r, extra = []) {
-  const ch = r.channels || [], t = [];
-  t.push([String(ch.length), ch.length === 1 ? 'channel sponsored' : 'channels sponsored']);
-  if (ch.length && ch.every(c => pos(c.subscribers))) t.push([fmt(ch.reduce((s, c) => s + c.subscribers, 0)), 'combined subscribers']);
-  const times = pos(r.total_sponsorships_found) ? r.total_sponsorships_found : (ch.length && ch.every(c => pos(c.times_sponsored)) ? ch.reduce((s, c) => s + c.times_sponsored, 0) : null);
-  if (times) t.push([String(times), 'sponsored videos tracked']);
+  const f = researchFacts(r), t = [];
+  t.push([String(f.count), f.count === 1 ? 'channel sponsored' : 'channels sponsored']);
+  if (f.subs) t.push([fmt(f.subs) + (f.subsPlus ? '+' : ''), 'combined subscribers']);
+  if (f.times) t.push([String(f.times), 'sponsored videos tracked']);
   if (r.featured_video && pos(r.featured_video.views)) t.push([fmt(r.featured_video.views), 'views on the video shown']);
   t.push(...extra);
   return `<div class="tiles">${t.map(([v, l]) => `<div class="tile"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>`;
@@ -545,17 +567,21 @@ function renderResearch() {
   if (r.mode === 'case_study') return renderCase(r, b);
   const lapsed = r.mode === 'lapsed';
   const fv = r.featured_video, vid = fv && videoEmbed(fv.url, fv.title);
+  const f = researchFacts(r);
+  const lede = f.partial
+    ? `${sourceLine()}, ${esc(b.name)} has sponsored ${f.count} channels. Here are a few of them.`
+    : `${sourceLine()}, these are the channels ${esc(b.name)} has sponsored${lapsed ? '' : ' recently'}.`;
   const fvMeta = fv ? [fv.published ? `Published ${monthLabel(fv.published)}` : '', pos(fv.views) ? `${fmt(fv.views)} views` : ''].filter(Boolean).join(' — ') : '';
   return `<section class="sec sec--soft" id="research"><div class="wrap">
     <div class="sec-head">
       <h2>${lapsed ? `Where ${esc(b.name)} has been on YouTube` : `${esc(b.name)} is already working with YouTube creators`}</h2>
-      <p class="lede">${sourceLine()}, these are the channels ${esc(b.name)} has sponsored${lapsed ? '' : ' recently'}.</p>
+      <p class="lede">${lede}</p>
     </div>
     ${researchTiles(r)}
     ${lapsed && r.last_sponsored_month ? `<div class="callout"><span class="seal seal--num" aria-hidden="true"><span>↺</span></span><p>The last integration we tracked was in ${esc(monthLabel(r.last_sponsored_month))}. That makes now a natural window to come back with fresh creators.</p></div>` : ''}
     <div class="research-grid">
       ${vid ? `<div><p class="video-label">${lapsed ? 'Most recent sponsored video we found' : 'A recent sponsored video'}</p>${vid}<div class="video-cap">${fv.title ? `<h3>${esc(fv.title)}</h3>` : ''}${fvMeta ? `<p class="small">${esc(fvMeta)}</p>` : ''}</div></div>` : ''}
-      <div${vid ? '' : ' style="grid-column:1/-1"'}><p class="video-label">Channels ${esc(b.name)} has sponsored</p>${chanList(r.channels || [])}</div>
+      <div${vid ? '' : ' style="grid-column:1/-1"'}>${chanBlock(b.name, r, 'has sponsored')}</div>
     </div>
   </div></section>`;
 }
@@ -581,7 +607,7 @@ function renderCase(r, b) {
       </details></div>` : ''}
     <div class="research-grid">
       ${vid ? `<div><p class="video-label">A ${esc(comp.name)} sponsored video</p>${vid}<div class="video-cap">${fv.title ? `<h3>${esc(fv.title)}</h3>` : ''}</div></div>` : ''}
-      <div${vid ? '' : ' style="grid-column:1/-1"'}><p class="video-label">Channels ${esc(comp.name)} sponsored</p>${chanList(r.channels || [])}</div>
+      <div${vid ? '' : ' style="grid-column:1/-1"'}>${chanBlock(comp.name, r, 'sponsored')}</div>
     </div>
     <p style="margin-top:2rem;max-width:60ch" class="lede">The same approach is open to ${esc(b.name)}: pair a creator whose audience already matches your buyer with a format they know how to sell.</p>
   </div></section>`;

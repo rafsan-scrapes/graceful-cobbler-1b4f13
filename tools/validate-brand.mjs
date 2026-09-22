@@ -27,6 +27,16 @@ const str = v => typeof v === 'string' && v.trim().length > 0;
 const httpsUrl = v => { try { return new URL(v).protocol === 'https:'; } catch { return false; } };
 const ytChannel = v => httpsUrl(v) && /youtube\.com\/(@[\w.\-]+|channel\/[\w-]+|c\/[\w.\-]+|user\/[\w.\-]+)/i.test(v);
 const ytVideoId = v => { try { const x = new URL(v); const h = x.hostname.replace(/^www\.|^m\./, ''); let id = null; if (h === 'youtu.be') id = x.pathname.slice(1).split('/')[0]; else if (h.endsWith('youtube.com')) id = x.searchParams.get('v') || (x.pathname.match(/\/(?:shorts|embed|live)\/([\w-]{11})/) || [])[1]; return id && /^[\w-]{11}$/.test(id) ? id : null; } catch { return null; } };
+// Netlify's servers are case-sensitive, Windows and macOS usually are not. Check the exact spelling.
+const existsExact = rel => {
+  let dir = root;
+  for (const part of rel.split('/').filter(Boolean)) {
+    let names; try { names = fs.readdirSync(dir); } catch { return false; }
+    if (!names.includes(part)) return false;
+    dir = path.join(dir, part);
+  }
+  return true;
+};
 const ym = v => /^\d{4}-(0[1-9]|1[0-2])(-\d{2})?$/.test(v || '');
 const monthIndex = v => { const [y, m] = v.split('-').map(Number); return y * 12 + m; };
 const median = a => { const s = [...a].sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
@@ -50,8 +60,11 @@ walk(d, (v, p) => {
   if (PLACEHOLDER.test(v)) E(`${p}: looks like an unfilled placeholder ("${v.slice(0, 40)}")`);
   if (NEWNESS.test(v)) W(`${p}: frames Brokoby as new. Brokoby is presented as established.`);
   if (d.demo !== true && /\bsample\b/i.test(v)) E(`${p}: contains the word "sample" (leftover demo text)`);
-  if (/^\/assets\//.test(v) && !fs.existsSync(path.join(root, v))) E(`${p}: file not found on disk: ${v}`);
-  if (/^https:\/\/.*\.(png|jpe?g|webp|svg|gif)(\?|$)/i.test(v)) W(`${p}: hotlinked image. Save it under /assets/brands/${slug}/ so it cannot break.`);
+  if (/^\.?[\\/]*assets[\\/]/i.test(v) && !/^\/assets\/[^\\]*$/.test(v)) E(`${p}: image path must start with /assets/ and use forward slashes. Got "${v}". Use /assets/brands/<file>.`);
+  else if (/^\/assets\//.test(v) && !existsExact(v)) E(`${p}: file not found (names are case-sensitive on Netlify): ${v}`);
+  if (/(^|\.)(logo|avatar)$/.test(p.replace(/\[\d+\]/g, '')) && !/^\/assets\//.test(v) && !/^https:\/\//.test(v)) E(`${p}: must be a path like /assets/brands/name.jpg`);
+  if (/\s{2,}|^\s|\s$|\n/.test(v)) W(`${p}: contains stray spaces or line breaks. Trim it.`);
+  if (/^https:\/\/.*\.(png|jpe?g|webp|svg|gif)(\?|$)/i.test(v)) W(`${p}: hotlinked image. Save it under /assets/brands/ so it cannot break.`);
 });
 
 /* ---------- brand ---------- */
@@ -78,7 +91,23 @@ if (!isObj(r)) E('research is required'); else {
     if (c.times_sponsored !== undefined) needNum(c.times_sponsored, `${p}.times_sponsored`, { min: 1 });
     if (!c.name) W(`${p}.name missing. The page will show the @handle.`);
   });
-  if (r.total_sponsorships_found !== undefined) needNum(r.total_sponsorships_found, 'research.total_sponsorships_found', { min: 1 });
+  ['total_sponsorships_found', 'total_channels_sponsored', 'combined_subscribers_estimate'].forEach(k => r[k] !== undefined && needNum(r[k], `research.${k}`, { min: 1 }));
+  if (Array.isArray(chans) && chans.length) {
+    const listed = chans.length, sumTimes = chans.reduce((a, c) => a + (isNum(c.times_sponsored) ? c.times_sponsored : 0), 0);
+    if (isNum(r.total_channels_sponsored) && r.total_channels_sponsored < listed) E(`research.total_channels_sponsored (${r.total_channels_sponsored}) is less than the ${listed} channels listed`);
+    if (isNum(r.total_sponsorships_found)) {
+      if (isNum(r.total_channels_sponsored) && r.total_sponsorships_found < r.total_channels_sponsored) E('research.total_sponsorships_found cannot be less than total_channels_sponsored (each channel was sponsored at least once)');
+      if (r.total_sponsorships_found < sumTimes) E(`research.total_sponsorships_found (${r.total_sponsorships_found}) is less than the ${sumTimes} sponsorships listed on the channels`);
+      if (r.total_sponsorships_found < listed) E('research.total_sponsorships_found is less than the number of channels listed');
+    }
+    const looksPartial = (isNum(r.total_sponsorships_found) && r.total_sponsorships_found > sumTimes && sumTimes > 0) || (isNum(r.combined_subscribers_estimate) && !isNum(r.total_channels_sponsored));
+    if (looksPartial && !isNum(r.total_channels_sponsored)) W('The totals suggest you listed only some channels. Add research.total_channels_sponsored, otherwise the page says "' + listed + ' channels sponsored".');
+    if (isNum(r.combined_subscribers_estimate)) {
+      const listedSubs = chans.reduce((a, c) => a + (isNum(c.subscribers) ? c.subscribers : 0), 0);
+      if (listedSubs > r.combined_subscribers_estimate) E(`research.combined_subscribers_estimate (${r.combined_subscribers_estimate}) is smaller than the listed channels alone (${listedSubs})`);
+    }
+    if (r.mode === 'case_study' && (r.total_channels_sponsored !== undefined || r.combined_subscribers_estimate !== undefined)) E('total_channels_sponsored and combined_subscribers_estimate are for recent/lapsed modes only. A case study lists exactly the channels it discusses.');
+  }
   const fv = r.featured_video;
   if (fv !== undefined) {
     if (!ytVideoId(fv.url)) E('research.featured_video.url is not a valid YouTube video link');

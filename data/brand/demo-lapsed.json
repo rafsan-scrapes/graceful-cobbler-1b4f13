@@ -16,19 +16,23 @@
     "channels": [
       {
         "url": "https://www.youtube.com/@indydevdan",
-        "times_sponsored": 3
+        "times_sponsored": 5,
+        "subscribers": 233000
       },
       {
         "url": "https://www.youtube.com/@theryanthomas",
-        "times_sponsored": 2
+        "times_sponsored": 3,
+        "subscribers": 304000
       },
       {
         "url": "https://www.youtube.com/@emergentgarden",
-        "times_sponsored": 1
+        "times_sponsored": 7,
+        "subscribers": 379000
       },
       {
         "url": "https://www.youtube.com/@Codacus",
-        "times_sponsored": 1
+        "times_sponsored": 2,
+        "subscribers": 236000
       }
     ],
     "featured_video": {

@@ -1,0 +1,267 @@
+{
+  "slug": "coderabbit-k7q2",
+  "brand": {
+    "name": "Coderabbit",
+    "category": "AI code review",
+    "logo": "/assets/brands/coderabbit.jpg",
+    "website": "https://www.coderabbit.ai/",
+    "contact_first_name": "David",
+    "conversion_word": "paid developer seats",
+    "customer_value_usd": 576,
+    "customer_value_basis": "$48 per developer per month over 12 months."
+  },
+  "research": {
+    "mode": "recent",
+    "source": "Manual YouTube research",
+    "as_of": "2026-09",
+    "channels": [
+      {
+        "url": "https://www.youtube.com/@t3dotgg",
+        "name": "Theo - t3.gg",
+        "logo": "/assets/brands/theot3.jpg",
+        "subscribers": 566000,
+        "times_sponsored": 20
+      },
+      {
+        "url": "https://www.youtube.com/@CodeSource",
+        "name": "CodeSource",
+        "logo": "/assets/brands/codesource.jpg",
+        "subscribers": 103000,
+        "times_sponsored": 10
+      },
+      {
+        "url": "https://www.youtube.com/@devopstoolbox",
+        "name": "DevOps Toolbox",
+        "logo": "/assets/brands/devops.jpg",
+        "subscribers": 135000,
+        "times_sponsored": 2
+      },
+      {
+        "url": "https://www.youtube.com/@ColeMedin",
+        "name": "Cole Medin",
+        "logo": "/assets/brands/coldemeldin.jpg",
+        "subscribers": 226000,
+        "times_sponsored": 1
+      }
+    ],
+    "featured_video": {
+      "url": "https://www.youtube.com/watch?v=DOyoYgAj-GE",
+      "title": "My Keyboard Setup As A Senior Engineer",
+      "views": 42000,
+      "published": "2026-08"
+    },
+    "total_channels_sponsored": 36,
+    "total_sponsorships_found": 98
+  },
+  "creators": [
+    {
+      "name": "AI LABS",
+      "channel_url": "https://www.youtube.com/channel/UCelfWQr9sXVMTvBzviPGlFw",
+      "avatar": "/assets/brands/ai-labs.jpg",
+      "category": "AI / Coding & Developer Tools",
+      "subscribers": 165000,
+      "recent_video_views": [
+        27100,
+        18556,
+        55863,
+        63747,
+        208512,
+        34559,
+        44149,
+        37968,
+        114276,
+        36846,
+        227258,
+        105543,
+        28410,
+        24771,
+        54784
+      ],
+      "recent_video_likes": [
+        590,
+        216,
+        996,
+        510,
+        3063,
+        314,
+        526,
+        492,
+        1926,
+        511,
+        4796,
+        2450,
+        645,
+        702,
+        1009
+      ],
+      "recent_video_comments": [
+        11,
+        11,
+        14,
+        44,
+        138,
+        9,
+        19,
+        15,
+        30,
+        17,
+        77,
+        107,
+        20,
+        30,
+        21
+      ],
+      "uploads_per_month": 11,
+      "formats": [
+        "60-second integration, natural drop-in"
+      ],
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 21.5
+          },
+          {
+            "name": "India",
+            "pct": 10.1
+          },
+          {
+            "name": "Germany",
+            "pct": 4.9
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 3.7
+          },
+          {
+            "name": "Brazil",
+            "pct": 3.6
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "18–24",
+            "pct": 9.1
+          },
+          {
+            "label": "25–34",
+            "pct": 33.5
+          },
+          {
+            "label": "35–44",
+            "pct": 31.9
+          },
+          {
+            "label": "45–54",
+            "pct": 17.7
+          },
+          {
+            "label": "55–64",
+            "pct": 5.8
+          }
+        ]
+      },
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=p565AqELA8M",
+          "brand": "Lumalabs",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=90pwPVrydHg",
+          "brand": "Respan",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=PLyRe6Zk--8",
+          "brand": "Hedra",
+          "published": "2026-08"
+        }
+      ],
+      "fit_points": [
+        "Covers AI and coding tools for a developer-heavy audience, close to AI code review buyers.",
+        "About two-thirds of viewers are 25–44, the working-developer age band for this product.",
+        "Publishes about 11 videos a month, so a sponsorship reaches an active, returning audience.",
+        "Has integrated developer-adjacent tools such as Docker, showing the format fits dev products."
+      ]
+    },
+    {
+      "name": "Sam Witteveen",
+      "channel_url": "https://www.youtube.com/channel/UC55ODQSvARtgSyc8ThfiepQ",
+      "avatar": "/assets/brands/sam.jpg",
+      "category": "AI / Machine Learning / Developer Tools",
+      "subscribers": 130000,
+      "recent_video_views": [
+        184221,
+        40018,
+        13418,
+        40687,
+        135132,
+        74409,
+        2541,
+        60590,
+        29827,
+        211756,
+        18877,
+        14608,
+        13418
+      ],
+      "recent_video_likes": [
+        2408,
+        487,
+        253,
+        539,
+        1542,
+        1181,
+        42,
+        434,
+        320,
+        3182,
+        174,
+        146,
+        36
+      ],
+      "recent_video_comments": [
+        165,
+        57,
+        40,
+        75,
+        175,
+        89,
+        5,
+        82,
+        34,
+        449,
+        31,
+        28,
+        52
+      ],
+      "uploads_per_month": 7.8,
+      "formats": [
+        "60–90s mid-roll integration"
+      ],
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=CXvncR7v66o",
+          "brand": "Runpod",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=erQnRkMrpls",
+          "brand": "Docker",
+          "published": "2026-08"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=xDHD09fDUkQ",
+          "brand": "Dell",
+          "published": "2026-08"
+        }
+      ],
+      "fit_points": [
+        "Focuses on AI, machine learning and developer tools, the same buyer pool as AI code review.",
+        "Uses a 60–90s mid-roll, enough room for a code-review workflow demo inside a tutorial.",
+        "Has integrated developer tools such as Runpod and Docker for a technical audience."
+      ]
+    }
+  ]
+}

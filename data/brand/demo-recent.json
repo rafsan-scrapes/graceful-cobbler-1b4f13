@@ -1,5 +1,5 @@
 {
-  "slug": "demo-case",
+  "slug": "demo-recent",
   "demo": true,
   "brand": {
     "name": "Acme Notes",
@@ -10,39 +10,40 @@
     "customer_value_basis": "Sample: $10 a month Pro plan over a 12-month average customer life."
   },
   "research": {
-    "mode": "case_study",
+    "mode": "recent",
     "source": "SponsorRadar",
     "as_of": "2026-09",
-    "competitor": {
-      "name": "Rival Notes",
-      "website": "https://example.com"
-    },
     "channels": [
       {
         "url": "https://www.youtube.com/@indydevdan",
-        "times_sponsored": 3
+        "times_sponsored": 5,
+        "subscribers": 233000
       },
       {
         "url": "https://www.youtube.com/@theryanthomas",
-        "times_sponsored": 2
+        "times_sponsored": 3,
+        "subscribers": 304000
+      },
+      {
+        "url": "https://www.youtube.com/@emergentgarden",
+        "times_sponsored": 7,
+        "subscribers": 379000
+      },
+      {
+        "url": "https://www.youtube.com/@Codacus",
+        "times_sponsored": 2,
+        "subscribers": 236000
       }
     ],
     "featured_video": {
       "url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
-      "title": "Sample: a video sponsored by the competitor"
+      "title": "Sample: a recent video sponsored by the brand",
+      "published": "2026-09",
+      "views": 84200
     },
-    "estimated_revenue_usd": {
-      "low": 40000,
-      "high": 90000
-    },
-    "estimate_method": "Sample method: combined median views of the two channels multiplied by a 0.8% link click rate, a 2.5% click-to-customer rate and a $120 customer value. Replace with the real method for each case.",
-    "estimate_sources": [
-      {
-        "label": "SponsorRadar listing (sample)",
-        "url": "https://example.com/source"
-      }
-    ],
-    "outcome_summary": "Sample: estimated revenue linked to two creator sponsorships over the period tracked."
+    "total_channels_sponsored": 14,
+    "total_sponsorships_found": 32,
+    "combined_subscribers_estimate": 7800000
   },
   "creators": [
     {
@@ -143,17 +144,13 @@
         {
           "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
           "brand": "Sample App One",
-          "published": "2026-08"
+          "published": "2026-08",
+          "note": "Sample note: on-screen demo of a note-taking workflow."
         },
         {
           "video_url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
           "brand": "Sample App Two",
-          "published": "2026-06"
-        },
-        {
-          "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
-          "brand": "Sample App Three",
-          "published": "2026-03"
+          "published": "2026-05"
         }
       ]
     },
@@ -235,6 +232,14 @@
         331,
         283,
         395
+      ],
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=F3lL98Pj90o",
+          "brand": "Sample Gadget Co",
+          "published": "2026-07",
+          "note": "Sample note: full product walkthrough in a long-form review."
+        }
       ]
     }
   ]
