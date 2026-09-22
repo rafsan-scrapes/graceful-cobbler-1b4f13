@@ -477,7 +477,7 @@ function derive(c) {
 
 function project(c) {
   const d = c._d; if (!d.med) return null;
-  const scale = ST.conv == null ? 1 : ST.conv / A.conv_pct.mid;
+  const scale = ST.conv == null ? 1 : ST.conv / A.conv_pct.high;
   return ['low', 'mid', 'high'].map(k => {
     const views = d.med * A.views_multiplier[k];
     const clicks = views * A.ctr_pct[k] / 100;
@@ -691,22 +691,22 @@ function renderCreator(c, i) {
 }
 
 function cmpRows() {
-  const cs = DATA.creators, mid = c => (project(c) || [])[1];
+  const cs = DATA.creators, exp = c => (project(c) || [])[2];
   const rows = [
     ['Subscribers', c => pos(c.subscribers) ? fmt(c.subscribers) : ''],
     ['Median views', c => pos(c._d.med) ? fmt(c._d.med) : ''],
     ['Engagement', c => pos(c._d.eng) ? c._d.eng.toFixed(1) + '%' : ''],
-    ...(A.views_multiplier.mid !== 1 ? [['Average views', c => mid(c) ? fmt(mid(c).views) : '']] : []),
-    ['Average link clicks', c => mid(c) ? fmt(mid(c).clicks) : ''],
-    ['Average new ' + word(), c => mid(c) ? '≈' + fmt(mid(c).cust) : ''],
-    ['Average revenue', c => mid(c) && mid(c).rev != null ? money(mid(c).rev) : '']
+    ...(A.views_multiplier.high !== 1 ? [['Expected views', c => exp(c) ? fmt(exp(c).views) : '']] : []),
+    ['Expected link clicks', c => exp(c) ? fmt(exp(c).clicks) : ''],
+    ['Expected new ' + word(), c => exp(c) ? '≈' + fmt(exp(c).cust) : ''],
+    ['Expected revenue', c => exp(c) && exp(c).rev != null ? money(exp(c).rev) : '']
   ];
   return rows.filter(([, f]) => cs.some(c => f(c))).map(([l, f]) => `<tr><th scope="row">${esc(l)}</th>${cs.map(c => `<td>${f(c) || '—'}</td>`).join('')}</tr>`).join('');
 }
 function renderCompare() {
   const cs = DATA.creators; if (cs.length < 2) return '';
   return `<section class="sec" id="compare"><div class="wrap">
-    <div class="sec-head"><h2>Side by side</h2><p class="lede">The same numbers for each creator, so you can see the trade-offs at a glance.</p></div>
+    <div class="sec-head"><h2>Side by side</h2><p class="lede">The expected (strong-scenario) numbers for each creator, so you can see the trade-offs at a glance.</p></div>
     <div class="card cmp"><table class="cmp-t"><thead><tr><th></th>${cs.map(c => `<th scope="col"><span class="cmp-who">${avatar(nameOf(c), c.avatar)}${esc(nameOf(c))}</span></th>`).join('')}</tr></thead><tbody id="cmp-body">${cmpRows()}</tbody></table></div>
   </div></section>`;
 }
@@ -715,15 +715,15 @@ function calcOut() {
   const w = word();
   return DATA.creators.map(c => {
     const p = project(c); if (!p) return '';
-    const m = p[1];
+    const m = p[2];
     return `<div class="calc-line"><strong>${esc(nameOf(c))}</strong><span>≈${fmt(m.cust)} ${esc(w)}${m.rev != null ? ` · ${money(m.rev)}` : ''}</span></div>`;
   }).join('');
 }
 function renderCalc() {
-  const b = DATA.brand, m = A.conv_pct.mid, w = word();
+  const b = DATA.brand, m = A.conv_pct.high, w = word();
   const f = k => `${pct(A.views_multiplier[k] * 100, 0)} of median views, ${pct(A.ctr_pct[k], 1)} click the link, ${pct(A.conv_pct[k], 1)} of clicks become ${w}`;
   return `<section class="sec sec--soft" id="calc"><div class="wrap">
-    <div class="sec-head"><h2>Try your own numbers</h2><p class="lede">You know your conversion rate and what a ${esc(w.replace(/s$/, ''))} is worth better than we do. Change the two numbers and every projection on this page updates.</p></div>
+    <div class="sec-head"><h2>Try your own numbers</h2><p class="lede">You know your conversion rate and what a ${esc(w.replace(/s$/, ''))} is worth better than we do. Change the two numbers and every expected projection on this page updates. Showing the strong scenario.</p></div>
     <div class="calc-grid">
       <div class="card">
         <div class="calc-inputs">
@@ -737,7 +737,7 @@ function renderCalc() {
           <p>These are our own planning figures, not benchmarks from your data. Replace them with your own above.</p>
         </div>
       </div>
-      <div><p class="video-label">Average result per creator</p><div class="calc-out" id="calc-out" aria-live="polite">${calcOut()}</div></div>
+      <div><p class="video-label">Expected result per creator</p><div class="calc-out" id="calc-out" aria-live="polite">${calcOut()}</div></div>
     </div>
   </div></section>`;
 }
@@ -812,7 +812,7 @@ function wireCalc() {
   };
   conv.addEventListener('input', upd); val.addEventListener('input', upd);
   $('#calc-reset').addEventListener('click', () => {
-    conv.value = A.conv_pct.mid; val.value = pos(DATA.brand.customer_value_usd) ? DATA.brand.customer_value_usd : '';
+    conv.value = A.conv_pct.high; val.value = pos(DATA.brand.customer_value_usd) ? DATA.brand.customer_value_usd : '';
     upd();
   });
 }
