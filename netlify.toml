@@ -59,3 +59,28 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
     Cache-Control = "no-store"
+
+# ---------------------------------------------------------------
+# NEW: PROFILE PAGES (brand already knows Brokoby, asked for
+# creator profiles + audience data — warmer, "book a call" tone)
+# ---------------------------------------------------------------
+
+# 5. brokoby.com/profile/acme-x7k2 also shows brand.html.
+#    brand.html reads the URL to know it's a profile page and
+#    fetches data/profile/<slug>.json instead of data/brand/.
+[[redirects]]
+  from = "/profile/*"
+  to = "/brand.html"
+  status = 200
+
+[[headers]]
+  for = "/profile/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/data/profile/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-store"

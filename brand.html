@@ -368,7 +368,7 @@ table.cmp-t { width: 100%; min-width: 520px; border-collapse: collapse; font-var
 </main>
 
 <div class="sticky-cta" id="sticky" aria-hidden="true">
-  <a class="btn" href="#book" data-track="book" tabindex="-1">Book a 30-minute call</a>
+  <a class="btn" href="#book" data-track="book" tabindex="-1">Book a call</a>
 </div>
 
 <script>
@@ -385,7 +385,7 @@ const CONFIG = {
   EMAIL: 'rafsan@brokoby.com',
   CAL_LINK: 'brokoby/30min',
   CAL_URL: 'https://cal.com/brokoby/30min',
-  DATA_PATH: '/data/brand/',
+  DATA_PATHS: { brand: '/data/brand/', profile: '/data/profile/' },
   NOTIFY_ENDPOINT: '/.netlify/functions/notify-view',
   // Planning assumptions. Not sourced benchmarks. Override per brand in JSON ("assumptions").
   DEFAULTS: {
@@ -455,13 +455,17 @@ function videoEmbed(url, title) {
 }
 
 /* ---- Data ----------------------------------------------------------- */
-function getSlug() {
-  const m = location.pathname.match(/\/brand\/([^/?#]+)/);
-  const s = (m ? decodeURIComponent(m[1]) : new URLSearchParams(location.search).get('slug') || '').toLowerCase();
-  return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s) && s.length <= 60 ? s : null;
+function getRoute() {
+  const m = location.pathname.match(/\/(brand|profile)\/([^/?#]+)/);
+  if (m) return { kind: m[1], slug: decodeURIComponent(m[2]).toLowerCase() };
+  const qs = new URLSearchParams(location.search);
+  const slug = (qs.get('slug') || '').toLowerCase();
+  const kind = qs.get('type') === 'profile' ? 'profile' : 'brand';
+  return { kind, slug };
 }
+function validSlug(s) { return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s || '') && s.length <= 60; }
 
-let DATA, SLUG, A, ST;
+let DATA, SLUG, KIND, A, ST;
 
 function derive(c) {
   const V = c.recent_video_views || [], L = c.recent_video_likes || [], M = c.recent_video_comments || [];
@@ -491,17 +495,24 @@ const word = () => (DATA.brand.conversion_word || 'customers');
 
 function renderHero() {
   const b = DATA.brand, cs = DATA.creators, n = cs.length, prod = b.product || b.name;
+  const isProfile = DATA.page_type === 'profile';
   const who = b.contact_first_name ? `Prepared for ${esc(b.contact_first_name)} at ${esc(b.name)}` : `Prepared for ${esc(b.name)}`;
+  const headline = isProfile
+    ? `Here ${n === 1 ? 'is the creator' : 'are the creators'} we'd put forward for ${esc(prod)}`
+    : `${NUMWORD[n] || n} YouTube creator${n === 1 ? '' : 's'} matched to ${esc(prod)}`;
+  const lede = isProfile
+    ? `${b.contact_first_name ? esc(b.contact_first_name) + ', as you asked — ' : 'As you asked — '}full audience profiles, recent performance and past integrations for ${n === 1 ? 'this creator' : 'each creator'}, so you can decide who to move forward with.`
+    : `We looked at how ${esc(b.name)} shows up on YouTube, then picked the ${n === 1 ? 'channel' : n + ' channels'} we'd put a sponsorship budget behind. Audience data, past integrations and projected results are all below.`;
+  const dealLabel = isProfile ? 'Creator profiles' : 'Matched creators';
   return `<section class="hero" id="top"><div class="wrap hero-grid">
     <div>
       <span class="pill pill--yolk">${who}</span>
-      <h1>${NUMWORD[n] || n} YouTube creator${n === 1 ? '' : 's'} matched to ${esc(prod)}</h1>
-      <p class="lede">We looked at how ${esc(b.name)} shows up on YouTube, then picked the ${n === 1 ? 'channel' : n + ' channels'} we'd put a sponsorship budget behind. Audience data, past integrations and projected results are all below.</p>
+      <h1>${headline}</h1>
+      <p class="lede">${lede}</p>
       <div class="hero-actions">
-        <a class="btn" href="#book" data-track="book">Book a 30-minute call</a>
-        <a class="link" href="#creator-1">See the creators</a>
+        <a class="btn" href="#book" data-track="book">Book a ${isProfile ? '20–30 minute' : '30-minute'} call</a>
+        <a class="link" href="#creator-1">See the creator${n === 1 ? '' : 's'}</a>
       </div>
-      <p class="small hero-note">Commission-only. Nothing upfront.</p>
     </div>
     <div class="deal" aria-hidden="true">
       <div class="card stub deal-a">
@@ -510,7 +521,7 @@ function renderHero() {
       </div>
       <div class="seal seal--xl"><span>brokoby<small>brokered</small></span></div>
       <div class="card stub deal-b">
-        <p class="small">Matched creators</p>
+        <p class="small">${dealLabel}</p>
         ${cs.map(c => `<div class="deal-row">${avatar(nameOf(c), c.avatar)}<div><strong>${esc(nameOf(c))}</strong>${pos(c.subscribers) ? `<span>${fmt(c.subscribers)} subscribers</span>` : ''}</div></div>`).join('')}
       </div>
     </div>
@@ -743,36 +754,56 @@ function renderCalc() {
 }
 
 function renderHow() {
+  const isProfile = DATA.page_type === 'profile';
+  const step1 = isProfile
+    ? { h: 'Tell us who to move forward with', p: 'One creator, both, or ask us to find alternatives if neither is quite right.' }
+    : { h: 'Pick one creator or both', p: 'Tell us which channel fits best, and what you want viewers to do.' };
+  const step3 = isProfile
+    ? { h: 'We get it live', p: "We handle the brief and the back-and-forth with the creator, so you don't have to." }
+    : { h: 'The video goes live', p: 'The creator produces and publishes the agreed sponsored content. We stay involved in coordinating the partnership throughout the campaign.' };
+  const card = isProfile
+    ? { h: 'What happens on the call', p: "20 to 30 minutes to walk through the creators, answer any questions on the audience data, and agree next steps. No pressure to decide on the spot." }
+    : { h: 'More than a moment', p: 'Unlike short-lived ad placements, YouTube videos can continue to be discovered and watched weeks or months after they go live. The right creator puts your brand inside content an audience actively chooses to watch.' };
   return `<section class="sec" id="how"><div class="wrap how-grid">
     <div>
       <div class="sec-head"><h2>How it works from here</h2><p class="lede">You choose. We handle everything between the yes and the live video.</p></div>
       <ol class="steps">
-        <li><span class="seal seal--num" aria-hidden="true"><span>1</span></span><div><h3>Pick one creator or both</h3><p>Tell us which channel fits best, and what you want viewers to do.</p></div></li>
-        <li><span class="seal seal--num" aria-hidden="true"><span>2</span></span><div><h3>We run the deal</h3><p>Brief, negotiation, contract, timeline and approvals. You review the draft and give the go-ahead.</p></div></li>
-        <li><span class="seal seal--num" aria-hidden="true"><span>3</span></span><div><h3>The video goes live</h3><p>The creator produces and publishes the agreed sponsored content. We stay involved in coordinating the partnership throughout the campaign.</p></div></li>
+        <li><span class="seal seal--num" aria-hidden="true"><span>1</span></span><div><h3>${esc(step1.h)}</h3><p>${esc(step1.p)}</p></div></li>
+        <li><span class="seal seal--num" aria-hidden="true"><span>2</span></span><div><h3>We run the deal</h3><p>Brief, negotiation, timeline and approvals. You review the draft and give the go-ahead.</p></div></li>
+        <li><span class="seal seal--num" aria-hidden="true"><span>3</span></span><div><h3>${esc(step3.h)}</h3><p>${esc(step3.p)}</p></div></li>
       </ol>
     </div>
     <div class="card" style="background:var(--yolk)">
-      <h3>More than a moment</h3>
-      <p style="margin-top:.75rem">Unlike short-lived ad placements, YouTube videos can continue to be discovered and watched weeks or months after they go live. The right creator puts your brand inside content an audience actively chooses to watch.</p>
+      <h3>${esc(card.h)}</h3>
+      <p style="margin-top:.75rem">${esc(card.p)}</p>
     </div>
   </div></section>`;
 }
 
 function renderBook() {
-  const b = DATA.brand, names = DATA.creators.map(nameOf);
+  const b = DATA.brand, names = DATA.creators.map(nameOf), isProfile = DATA.page_type === 'profile';
   const list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0];
-  const subj = `Re: ${b.name} x Brokoby`;
-  const text = `Yes, please send me the details on ${list}.\n\nThanks`;
+  const subj = isProfile ? `Re: ${b.name} x Brokoby — moving forward` : `Re: ${b.name} x Brokoby`;
+  const text = isProfile
+    ? `Yes, let's move forward with ${list}.\n\nThanks`
+    : `Yes, please send me the details on ${list}.\n\nThanks`;
   const mailto = `mailto:${CONFIG.EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text.replace(/\n/g, '\r\n'))}`;
   const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(CONFIG.EMAIL)}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(text)}`;
+  const heading = isProfile ? 'Ready to move forward?' : 'Want to run one of these?';
+  const lede = isProfile
+    ? `Book ${names.length > 1 ? '20 to 30 minutes and we\'ll go through both profiles' : '20 to 30 minutes and we\'ll go through the profile'}, answer any questions and agree next steps. Prefer email? Just reply yes and we'll take it from there.`
+    : `Book 30 minutes and we'll go through ${names.length > 1 ? 'both creators' : 'the creator'}, your goals and a rough timeline. Prefer email? Just say yes and we'll send everything over.`;
+  const actions = isProfile
+    ? `<a class="btn btn--ink" href="${esc(CONFIG.CAL_URL)}" target="_blank" rel="noopener" data-track="book" data-who="cta">Book a call</a>
+       <a class="btn btn--paper" id="yes-btn" href="${esc(mailto)}" data-track="reply_yes">Or reply yes by email</a>`
+    : `<a class="btn btn--ink" id="yes-btn" href="${esc(mailto)}" data-track="reply_yes">Say yes via email</a>`;
   return `<section class="sec sec--yolk" id="book"><div class="wrap">
     <div class="sec-head" style="margin-inline:auto;text-align:center;justify-items:center">
-      <h2>Want to run one of these?</h2>
-      <p class="lede" style="color:rgba(25,25,25,.75)">Book 30 minutes and we'll go through ${names.length > 1 ? 'both creators' : 'the creator'}, your goals and a rough timeline. Prefer email? Just say yes and we'll send everything over.</p>
+      <h2>${esc(heading)}</h2>
+      <p class="lede" style="color:rgba(25,25,25,.75)">${esc(lede)}</p>
     </div>
     <div class="book-actions">
-      <a class="btn btn--ink" id="yes-btn" href="${esc(mailto)}" data-track="reply_yes">Say yes via email</a>
+      ${actions}
     </div>
     <p class="yes-help" id="yes-help" data-gmail="${esc(gmail)}" hidden></p>
     <div class="card book-card"><div id="cal-inline"></div></div>
@@ -896,24 +927,30 @@ function showError() {
 }
 
 async function boot() {
-  SLUG = getSlug(); if (!SLUG) return showError();
+  const route = getRoute(); SLUG = route.slug; KIND = route.kind;
+  if (!validSlug(SLUG)) return showError();
   try {
-    const res = await fetch(CONFIG.DATA_PATH + SLUG + '.json', { cache: 'no-cache' });
+    const res = await fetch(CONFIG.DATA_PATHS[KIND] + SLUG + '.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error(res.status);
     DATA = await res.json();
-    if (!DATA.brand || !DATA.brand.name || !DATA.research || !Array.isArray(DATA.creators) || !DATA.creators.length) throw new Error('shape');
+    const isProfile = DATA.page_type === 'profile';
+    if (isProfile !== (KIND === 'profile')) throw new Error('page_type/route mismatch');
+    if (!DATA.brand || !DATA.brand.name || !Array.isArray(DATA.creators) || !DATA.creators.length) throw new Error('shape');
+    if (!isProfile && !DATA.research) throw new Error('shape');
+    if (isProfile && DATA.research) throw new Error('shape');
   } catch (e) { console.error('[brokoby] could not load page data', e); return showError(); }
 
   A = {}; for (const k of Object.keys(CONFIG.DEFAULTS)) A[k] = { ...CONFIG.DEFAULTS[k], ...((DATA.assumptions || {})[k] || {}) };
   ST = { conv: null, value: pos(DATA.brand.customer_value_usd) ? DATA.brand.customer_value_usd : null };
   DATA.creators.forEach(c => { c._d = derive(c); });
 
-  document.title = `${DATA.creators.length === 1 ? 'A creator' : NUMWORD[DATA.creators.length] + ' creators'} for ${DATA.brand.name} — Brokoby`;
+  const isProfile = DATA.page_type === 'profile';
+  document.title = `${isProfile ? 'Creator profiles' : (DATA.creators.length === 1 ? 'A creator' : NUMWORD[DATA.creators.length] + ' creators')} for ${DATA.brand.name} — Brokoby`;
   const tag = $('#for-tag'); tag.textContent = `Prepared for ${DATA.brand.name}`; tag.hidden = false;
 
   $('#app').innerHTML =
     (DATA.demo ? `<div class="demo-ribbon">DEMO DATA — sample content, not a real brand or real numbers</div>` : '') +
-    renderHero() + renderResearch() + DATA.creators.map(renderCreator).join('') + renderCompare() + renderCalc() + renderHow() + renderBook() + renderFooter();
+    renderHero() + (isProfile ? '' : renderResearch()) + DATA.creators.map(renderCreator).join('') + renderCompare() + renderCalc() + renderHow() + renderBook() + renderFooter();
 
   wireVideos($('#app')); wireCalc(); wireYes(); wireObservers(); armViewBeacon();
   document.addEventListener('click', e => {

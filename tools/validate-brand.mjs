@@ -50,6 +50,16 @@ if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length < 6 || slug.length >
 if (!slug.startsWith('demo') && !/-[a-z0-9]{4}$/.test(slug)) W('slug should end with a 4-character random suffix so the link cannot be guessed (e.g. acme-x7k2)');
 if (d.demo === true && !slug.startsWith('demo')) E('"demo": true on a real brand page. Remove it or set it to false.');
 
+// Page type: derived from the folder the file lives in (data/brand/ vs data/profile/),
+// cross-checked against the page_type field the agent wrote into the JSON.
+const folder = path.basename(path.dirname(file));
+const isProfileFolder = folder === 'profile';
+const isBrandFolder = folder === 'brand';
+if (!isProfileFolder && !isBrandFolder) W(`File is not inside data/brand/ or data/profile/ (found in data/${folder}/). Page-type checks below assume one of those two folders.`);
+if (isProfileFolder && d.page_type !== 'profile') E('Files in data/profile/ must have "page_type": "profile"');
+if (isBrandFolder && d.page_type !== undefined && d.page_type !== 'pitch') E('Files in data/brand/ must omit "page_type", or set it to "pitch"');
+const isProfile = d.page_type === 'profile';
+
 /* ---------- scans over every string ---------- */
 const LEAK = /\b(commission|rate\s?card|our\s+fee|agency\s+fee|retainer|mark-?up|cpm)\b|\$\s?[\d,.]+\s?k?\s?(\/|per|for an?)\s?(video|integration|sponsorship|post)/i;
 const PLACEHOLDER = /\{\{|\}\}|\[\[|\]\]|\bTODO\b|\bTBD\b|lorem ipsum|PLACEHOLDER|\bXXX+\b|\bN\/A\b/i;
@@ -78,7 +88,9 @@ if (!isObj(b)) E('brand is required'); else {
 
 /* ---------- research ---------- */
 const r = d.research;
-if (!isObj(r)) E('research is required'); else {
+if (isProfile) {
+  if (r !== undefined) E('research must not appear on a profile page (data/profile/). Profile pages skip the research section entirely.');
+} else if (!isObj(r)) E('research is required on a pitch page (data/brand/)'); else {
   if (!['recent', 'lapsed', 'case_study'].includes(r.mode)) E('research.mode must be "recent", "lapsed" or "case_study"');
   if (!str(r.source)) E('research.source is required (e.g. "SponsorRadar")');
   if (!ym(r.as_of)) E('research.as_of must be YYYY-MM (the month the research was checked)');
