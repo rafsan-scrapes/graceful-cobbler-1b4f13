@@ -1,0 +1,193 @@
+{
+  "slug": "webshare-k4d7",
+  "page_type": "profile",
+  "brand": {
+    "name": "Webshare",
+    "category": "Proxy / web-scraping infrastructure",
+    "logo": "/assets/brands/webshare-wordmark.svg",
+    "website": "https://www.webshare.io/",
+    "contact_first_name": "Marija",
+    "conversion_word": "paid proxy subscriptions",
+    "customer_value_usd": 957.24,
+    "customer_value_basis": "Based on the $79.77 a month plan over 12 months ($957.24 a year)."
+  },
+  "creators": [
+    {
+      "name": "AI LABS",
+      "channel_url": "https://www.youtube.com/channel/UCelfWQr9sXVMTvBzviPGlFw",
+      "avatar": "/assets/brands/ai-labs.jpg",
+      "category": "AI / Coding & Developer Tools",
+      "subscribers": 166000,
+      "recent_video_views": [
+        51015, 28145, 44147, 19782, 63563, 65821, 221939, 36037, 48723, 39365, 125885, 40754, 261504, 110975
+      ],
+      "recent_video_likes": [
+        755, 243, 846, 234, 1091, 525, 3185, 325, 562, 514, 2103, 563, 5229, 2518
+      ],
+      "recent_video_comments": [
+        2, 31, 37, 17, 15, 14, 47, 143, 9, 22, 15, 30, 23, 82
+      ],
+      "uploads_per_month": 11,
+      "formats": [
+        "60-Second Integration",
+        "Natural Drop In"
+      ],
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 21.5
+          },
+          {
+            "name": "India",
+            "pct": 10.1
+          },
+          {
+            "name": "Germany",
+            "pct": 4.9
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 3.7
+          },
+          {
+            "name": "Brazil",
+            "pct": 3.6
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "18–24",
+            "pct": 9.1
+          },
+          {
+            "label": "25–34",
+            "pct": 33.5
+          },
+          {
+            "label": "35–44",
+            "pct": 31.9
+          },
+          {
+            "label": "45–54",
+            "pct": 17.7
+          },
+          {
+            "label": "55–64",
+            "pct": 5.8
+          }
+        ]
+      },
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=p565AqELA8M",
+          "brand": "Lumalabs",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=90pwPVrydHg",
+          "brand": "Respan",
+          "published": "2026-09"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=PLyRe6Zk--8",
+          "brand": "Hedra",
+          "published": "2026-08"
+        }
+      ],
+      "fit_points": [
+        "Audience is largely 25–44 developers and builders, close to the buyers of proxy and scraping infrastructure.",
+        "Covers AI and coding tools with hands-on demos, a natural setting for a proxy use case.",
+        "Publishes about 11 videos a month, so integrations reach an active, returning audience."
+      ]
+    },
+    {
+      "name": "Easy Riders",
+      "channel_url": "https://www.youtube.com/channel/UCGwns8iFnP0WbTK9e0PUxIg",
+      "avatar": "/assets/brands/easy_riders.jpg",
+      "category": "AI tools and productivity",
+      "subscribers": 27000,
+      "recent_video_views": [
+        25014, 113514, 130973, 102901, 32271, 73866, 261694, 53416, 120907, 31742, 76473, 29601, 34804, 4105, 1455
+      ],
+      "recent_video_likes": [
+        395, 1540, 1625, 1208, 599, 914, 3942, 1349, 3151, 874, 2196, 787, 1226, 157, 20
+      ],
+      "recent_video_comments": [
+        47, 283, 520, 173, 108, 123, 460, 269, 583, 162, 337, 215, 171, 41, 1
+      ],
+      "uploads_per_month": 3.6,
+      "formats": [
+        "60–90s ad segment"
+      ],
+      "audience": {
+        "top_countries": [
+          {
+            "name": "United States",
+            "pct": 25.2
+          },
+          {
+            "name": "Germany",
+            "pct": 8
+          },
+          {
+            "name": "United Kingdom",
+            "pct": 7.1
+          },
+          {
+            "name": "Canada",
+            "pct": 4.3
+          },
+          {
+            "name": "India",
+            "pct": 3.8
+          }
+        ],
+        "age_groups": [
+          {
+            "label": "13–17",
+            "pct": 6
+          },
+          {
+            "label": "18–24",
+            "pct": 22
+          },
+          {
+            "label": "25–34",
+            "pct": 42
+          },
+          {
+            "label": "35–44",
+            "pct": 17
+          },
+          {
+            "label": "45–54",
+            "pct": 8
+          }
+        ]
+      },
+      "past_integrations": [
+        {
+          "video_url": "https://www.youtube.com/watch?v=weicPw4Ychk",
+          "brand": "DataCamp",
+          "published": "2026-05"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=TCMMU7UfM7w",
+          "brand": "Abacus AI",
+          "published": "2026-08"
+        },
+        {
+          "video_url": "https://www.youtube.com/watch?v=czU5ylX6_AM",
+          "brand": "MiniMax",
+          "published": "2026-08"
+        }
+      ],
+      "fit_points": [
+        "Viewers are mostly 18–34 in the US, UK and Germany, the demographic that tries AI and data tools first.",
+        "Reviews AI tools with on-screen walkthroughs, which fits a technical product like proxies.",
+        "Recent integrations for DataCamp and Abacus AI show the audience responds to data and AI offers."
+      ]
+    }
+  ]
+}
